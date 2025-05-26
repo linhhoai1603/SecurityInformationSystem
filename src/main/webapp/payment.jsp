@@ -55,7 +55,8 @@
       </form>
     </div>
   </div>
-  <form action="order" method="post">
+<%--  <form action="order" method="post">--%>
+  <form action="verifyOrder" method="post">
   <div class="row">
     <div class="col-md-6">
       <h4 style="color: #339c87" class="mt-4 mb-3">Thông tin giao hàng</h4>
@@ -64,7 +65,7 @@
         <div class="row">
           <div class="col-md-6">
             <label class="fw-bold" for="name">Họ và tên: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="name" name="name" value="${sessionScope.user.fullName}" />
+            <input type="text" class="form-control" id="name" name="name" value="${sessionScthope.user.fullName}" />
           </div>
           <div class="col-md-6">
             <label class="fw-bold" for="phone">Số điện thoại: <span class="text-red">*</span></label>
@@ -163,29 +164,25 @@
         </tr>
         <hr />
       </c:forEach>
-      <!-- Thong tin thanh toan-->
+      <!-- Thong tin thanh toán-->
         <hr />
         <tr>
           <div class="row">
             <div class="col-md-3 fw-bold text-center">Tạm tính</div>
             <div class="col-md-6"></div>
-            <div class="col-md-3 fw-bold text-center price">${sessionScope.cart.totalPrice}</div>
+            <div class="col-md-3 fw-bold text-center price" id="subtotalPrice">${sessionScope.cart.totalPrice}</div>
           </div>
           <div class="row">
             <div class="col-md-3 fw-bold text-center">Giao hàng</div>
             <div class="col-md-6"></div>
-            <div class="col-md-3 fw-bold text-center price">
-                ${sessionScope.cart.shippingFee}
-            </div>
+            <div class="col-md-3 fw-bold text-center price" id="shippingFee">${sessionScope.cart.shippingFee}</div>
           </div>
           <div class="row">
             <div class="col-md-3 fw-bold text-center text-primary">
               Tổng
             </div>
             <div class="col-md-6"></div>
-            <div class="col-md-3 fw-bold text-center text-primary price">
-              ${sessionScope.cart.lastPrice}
-            </div>
+            <div class="col-md-3 fw-bold text-center text-primary price" id="lastPrice">${sessionScope.cart.lastPrice}</div>
           </div>
         </tr>
         <hr />
@@ -245,6 +242,10 @@
   </div>
   </form>
 </div>
+
+<input type="hidden" id="cartData" value='${sessionScope.cart}'>
+<input type="hidden" id="userData" value='${sessionScope.user}'>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Hàm định dạng số tiền thành tiền Việt
@@ -260,11 +261,33 @@
       }
     });
   });
+
+  // Function to toggle other address fields
   function toggleOtherAddress() {
-    const checkbox = document.getElementById("otherAddress");
-    const otherDelivery = document.getElementById("otherDelivery");
-    otherDelivery.style.display = checkbox.checked ? "block" : "none";
+      const otherDeliveryDiv = document.getElementById('otherDelivery');
+      if (document.getElementById('otherAddress').checked) {
+          otherDeliveryDiv.style.display = 'block';
+      } else {
+          otherDeliveryDiv.style.display = 'none';
+      }
   }
+
+  // Initialize the display based on the checkbox state
+  toggleOtherAddress();
+
+  // Add event listener to voucher link
+  const voucherLink = document.getElementById('voucher');
+  const inputVoucherDiv = document.getElementById('inputVoucher');
+  inputVoucherDiv.style.display = 'none'; // Initially hide voucher input
+
+  voucherLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      if (inputVoucherDiv.style.display === 'none') {
+          inputVoucherDiv.style.display = 'block';
+      } else {
+          inputVoucherDiv.style.display = 'none';
+      }
+  });
 </script>
 <!-- End payment -->
 <%@include file="includes/footer.jsp"%>

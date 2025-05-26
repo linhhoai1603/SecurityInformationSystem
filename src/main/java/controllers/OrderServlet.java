@@ -16,7 +16,7 @@ public class OrderServlet extends HttpServlet {
         // get method payment
         String methodPay = request.getParameter("payment");
         if("cash".equals(methodPay)) {
-          Ordered ordered = createOrder(request, response);
+            Ordered ordered = createOrder(request, response);
             // remove cart
             removeCart(request, response);
             // set attribute
@@ -30,8 +30,8 @@ public class OrderServlet extends HttpServlet {
     }
 
     private void removeCart(HttpServletRequest request, HttpServletResponse response) {
-       Cart cart = new Cart();
-         request.getSession().setAttribute("cart", cart);
+        Cart cart = new Cart();
+        request.getSession().setAttribute("cart", cart);
     }
 
     private Ordered createOrder(HttpServletRequest request, HttpServletResponse response) {
