@@ -42,6 +42,12 @@
         <input type="hidden" name="note" value="${param.note}">
         <input type="hidden" name="payment" value="${param.payment}">
 
+        <%-- Input for public key --%>
+        <div class="form-group mb-3">
+            <label for="public_key" class="fw-bold">Public key:</label>
+            <input type="text" class="form-control" id="public_key" name="public_key" placeholder="Nhập nội public key">
+        </div>
+
         <%-- Input for Signature --%>
         <div class="form-group mb-3">
             <label for="signature" class="fw-bold">Nội dung ký xác nhận:</label>
