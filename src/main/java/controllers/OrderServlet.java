@@ -29,13 +29,12 @@ public class OrderServlet extends HttpServlet {
                 ObjectMapper objectMapper = new ObjectMapper();
                 orderData = objectMapper.readValue(orderDataJson, Map.class);
                 // Now 'orderData' map contains the data from the JSON
+
                 // You can access different parts like:
                 // Map<String, Object> deliveryInfo = (Map<String, Object>) orderData.get("delivery");
                 // Map<String, Object> orderSummary = (Map<String, Object>) orderData.get("orderSummary");
                 // Map<String, Object> userInfo = (Map<String, Object>) orderData.get("user");
                 // Map<String, Map<String, Object>> products = (Map<String, Map<String, Object>>) orderData.get("products");
-
-                // TODO: Use 'publicKey' and 'signature' here for verification if needed
 
             } catch (IOException e) {
                 // Log error or handle exception
@@ -59,8 +58,7 @@ public class OrderServlet extends HttpServlet {
             request.setAttribute("message", "Đặt hàng thành công!");
             request.getRequestDispatcher("payment-success.jsp").forward(request, response);
         }
-        // Removed the else block as requested, assuming only cash is handled here.
-        // If other payment methods are added later, they should be handled in an else if or separate servlet.
+        // If other payment methods are addeld ater, they should be handled in an else if or separate servlet.
     }
 
     private void removeCart(HttpServletRequest request, HttpServletResponse response) {
@@ -81,97 +79,41 @@ public class OrderServlet extends HttpServlet {
         // Keep using session cart for product details and totals as before,
         // or switch to using 'orderData' products/summary
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        if (cart == null || cart.getItems().isEmpty()) {
-             // If orderData is available, try to construct cart details from JSON
-             if (orderData != null && orderData.containsKey("products")) {
-                 // TODO: Logic to reconstruct Cart or necessary product/summary info from 'orderData' map
-                 // For now, throwing an exception if session cart is empty and no orderData is available
-                 throw new IllegalStateException("Giỏ hàng trống hoặc không tồn tại và không có dữ liệu đơn hàng từ JSON.");
-             } else {
-                 throw new IllegalStateException("Giỏ hàng trống hoặc không tồn tại.");
-             }
+        if(cart == null || cart.getItems().isEmpty()) {
+            throw new IllegalStateException("Giỏ hàng trống hoặc không tồn tại.");
         }
 
         User user = (User) request.getSession().getAttribute("user");
-        if (user == null) {
-            throw new IllegalStateException("Người dùng chưa đăng nhập.");
+        if(user == null) {
+            throw new IllegalStateException("Người dùng chưa đăng nhập");
         }
 
-        // Tạo order - Use data from orderData if available, fallback to cart/session
-        Voucher voucher = null;
-        String status = "Đang giao hàng"; // Default status
-        double totalPrice = 0;
-        double lastPrice = 0;
-
-        if (orderData != null && orderData.containsKey("orderSummary")) {
-            Map<String, Object> orderSummary = (Map<String, Object>) orderData.get("orderSummary");
-            totalPrice = ((Number) orderSummary.get("subtotal")).doubleValue();
-            lastPrice = ((Number) orderSummary.get("total")).doubleValue();
-             if (orderData.containsKey("voucher") && orderData.get("voucher") != null) {
-                 Map<String, Object> voucherInfo = (Map<String, Object>) orderData.get("voucher");
-                 // TODO: Fetch or create Voucher object from voucherInfo
-                 // Example (basic):
-                 // voucher = new Voucher((String) voucherInfo.get("code"), ((Number) voucherInfo.get("discountAmount")).doubleValue());
-             }
-        } else {
-             // Fallback to cart data if JSON summary not available
-             totalPrice = cart.getTotalPrice();
-             lastPrice = cart.getLastPrice();
-             voucher = cart.getVoucher();
-        }
-
-
+        // Tạo order
+        Voucher voucher = cart.getVoucher();
+        String status = "Đang giao hàng";
+        double totalPrice = cart.getTotalPrice();
+        double lastPrice = cart.getLastPrice();
         Order order = new Order(user, voucher, status, totalPrice, lastPrice);
-        int idOrder = orderService.insertOrder(order); // Trả về idOrder sau khi chèn
+        int idOrder = orderService.insertOrder(order);
 
-        // Tạo chi tiết đơn hàng - Use data from orderData if available, fallback to cart
-        if (orderData != null && orderData.containsKey("products")) {
-            Map<String, Map<String, Object>> products = (Map<String, Map<String, Object>>) orderData.get("products");
-            for (Map<String, Object> productJson : products.values()) {
-                int styleId = Integer.parseInt(productJson.get("id").toString());
-                int quantity = (Integer) productJson.get("quantity");
 
-                Style style = styleService.getStyleByID(styleId); // Fetch Style object from DB
-                if (style == null) {
-                     // Handle case where style is not found
-                     throw new IllegalStateException("Không tìm thấy Style cho sản phẩm ID: " + styleId);
-                }
+        // Tạo orderDetails
+        for (CartItem item : cart.getItems().values()) {
+            Style style = item.getStyle();
+            int quantity = item.getQuantity();
 
-                 if (quantity > style.getProduct().getQuantity()) {
-                     throw new IllegalStateException("Số lượng sản phẩm không đủ cho Style ID: " + styleId);
-                 }else{
-                     // Update quantity in database
-                     style.getProduct().setQuantity(style.getProduct().getQuantity() - quantity);
-                     style.setQuantity(style.getQuantity() - quantity);
-                     styleService.updateQuantityForStyle(style.getId(), style.getQuantity());
-                     styleService.updateQuantityForProduct(style.getProduct().getId(), style.getProduct().getQuantity());
-
-                     // Create OrderDetail
-                     OrderDetail orderDetail = new OrderDetail(idOrder, style, quantity);
-                     orderDetailService.insertOrderDetail(orderDetail);
-                     order.getListOfDetailOrder().add(orderDetail);
-                 }
-            }
-
-        } else {
-            // Original logic using session cart
-            for (CartItem item : cart.getItems().values()) {
-                Style style = item.getStyle();
-                int quantity = item.getQuantity();
-                if (quantity > style.getProduct().getQuantity()) {
-                    throw new IllegalStateException("Số lượng sản phẩm không đủ.");
-                }else{
-                    style.getProduct().setQuantity(style.getProduct().getQuantity() - quantity);
-                    style.setQuantity(style.getQuantity() - quantity);
-                    styleService.updateQuantityForStyle(style.getId(), style.getQuantity());
-                    styleService.updateQuantityForProduct(style.getProduct().getId(), style.getProduct().getQuantity());
-                    OrderDetail orderDetail = new OrderDetail(idOrder, style, quantity);
-                    orderDetailService.insertOrderDetail(orderDetail);
-                    order.getListOfDetailOrder().add(orderDetail);
-                }
+            if(quantity > style.getProduct().getQuantity()) {
+                throw new IllegalStateException("Số lượng hàng không đủ");
+            }else {
+                style.setQuantity(style.getQuantity() - quantity);
+                style.getProduct().setQuantity(style.getProduct().getQuantity() - quantity);
+                styleService.updateQuantityForProduct(style.getProduct().getId(), style.getProduct().getQuantity());
+                styleService.updateQuantityForStyle(style.getId(), style.getQuantity());
+                OrderDetail orderDetail = new OrderDetail(idOrder, style, quantity);
+                orderDetailService.insertOrderDetail(orderDetail);
+                order.getListOfDetailOrder().add(orderDetail);
             }
         }
-
 
         // Xử lý thông tin giao hàng - Use data from orderData if available, fallback to request parameters
         String note = null;

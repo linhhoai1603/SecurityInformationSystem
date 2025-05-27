@@ -12,7 +12,9 @@
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/verifier.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/verifier.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +150,20 @@
       <command value="discountPercent" />
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.28">
+  <component name="RunManager" selected="Application.HashUtil">
+    <configuration name="HashUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="services.application.HashUtil" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MessageDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.MessageDAO" />
       <module name="ProjectWeb" />
@@ -181,19 +196,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.ProductDao" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -358,20 +360,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.HashUtil" />
       <item itemvalue="Application.OrderDetailDAO" />
       <item itemvalue="Application.OrderDetailServlet" />
-      <item itemvalue="Application.ProductDao" />
       <item itemvalue="Application.StyleDao" />
       <item itemvalue="Application.MessageDAO" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.28" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HashUtil" />
         <item itemvalue="Application.OrderDetailServlet" />
         <item itemvalue="Application.OrderDetailDAO" />
         <item itemvalue="Application.MessageDAO" />
         <item itemvalue="Application.StyleDao" />
-        <item itemvalue="Application.ProductDao" />
       </list>
     </recent_temporary>
   </component>
@@ -529,7 +531,8 @@
       <workItem from="1748229411326" duration="1895000" />
       <workItem from="1748235442271" duration="1540000" />
       <workItem from="1748248846494" duration="1490000" />
-      <workItem from="1748251046347" duration="24003000" />
+      <workItem from="1748251046347" duration="24512000" />
+      <workItem from="1748357031585" duration="7828000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
