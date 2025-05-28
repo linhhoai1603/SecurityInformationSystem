@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CheckSessionServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/services/OrderDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/services/OrderDetailService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +27,9 @@
         <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Servlet" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -150,7 +150,7 @@
       <command value="discountPercent" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.HashUtil">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.28">
     <configuration name="HashUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="services.application.HashUtil" />
       <module name="ProjectWeb" />
@@ -532,7 +532,8 @@
       <workItem from="1748235442271" duration="1540000" />
       <workItem from="1748248846494" duration="1490000" />
       <workItem from="1748251046347" duration="24512000" />
-      <workItem from="1748357031585" duration="7828000" />
+      <workItem from="1748357031585" duration="8045000" />
+      <workItem from="1748402177686" duration="11459000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />

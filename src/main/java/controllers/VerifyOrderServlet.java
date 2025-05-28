@@ -6,9 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Cart;
-import models.CartItem;
-import models.User;
+import models.*;
+import services.AddressService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,123 +20,119 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet(name = "VerifyOrderServlet", value = "/verifyOrder")
 public class VerifyOrderServlet extends HttpServlet {
 
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AddressService addressService = new AddressService();
 
 //        user infor
         User user = (User) request.getSession().getAttribute("user");
         int id_user = user.getId();
-        String name = request.getParameter("name");
-
+        String fullname = user.getFullName();
+        String email = user.getEmail();
+        String phone = user.getNumberPhone();
 
         Map<String, Object> userData = new HashMap<>();
+        userData.put("id_user", id_user);
+        userData.put("fullname", fullname);
+        userData.put("email", email);
+        userData.put("phone", phone);
 
 
-
-//        order infor - orderDetail infor
-        // Build order data structure
+//        order infor - orderDetail infor, voucher infor, shipping fee
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
         Map<String, Object> orderData = new HashMap<>();
+        for(CartItem item: cart.getItems().values()) {
+            Map<String, Object> productData = new HashMap<>();
+            Style style = item.getStyle();
 
-//        voucher infor
+            int style_id = style.getId();
+            int product_id = style.getProduct().getId();
+            String product_name = style.getProduct().getName();
+            String image = style.getImage();
+            double price = style.getProduct().getPrice().getLastPrice();
+            int quantity = item.getQuantity();
+            // total price = quantity * price
+
+            productData.put("product_id", product_id);
+            productData.put("product_name", product_name);
+            productData.put("image", image);
+            productData.put("price", price);
+            productData.put("quantity", quantity);
+
+            orderData.put("product", productData);
+        }
+        double totalPrice = cart.getTotalPrice();
+        double shippingFee = cart.getShippingFee();
+        double lastPrice = cart.getLastPrice();
+
+        orderData.put("totalPrice", totalPrice);
+        orderData.put("shippingFee", shippingFee);
+
+        if (cart.getVoucher() != null) {
+            Map<String, Object> voucherInfo = new HashMap<>();
+            voucherInfo.put("code", cart.getVoucher().getCode());
+            voucherInfo.put("discountAmount", cart.getVoucher().getDiscountAmount());
+
+            orderData.put("voucher", voucherInfo);
+        } else {
+            orderData.put("voucher", null);
+        }
+        orderData.put("lastPrice", lastPrice);
 
 //        payment method
+        Map<String, Object> paymentData = new HashMap<>();
+        String paymentMethod = request.getParameter("payment");
+        paymentData.put("paymentMethod", paymentMethod);
 
 //        delivery infor
+        Map<String, Object> deliveryData = new HashMap<>();
+        String otherAddress = request.getParameter("otherAddress");
+        if(otherAddress != null) {
+            deliveryData.put("address_id", addressService.getLastId() + 1);
+            deliveryData.put("fullName", request.getParameter("o-fullName"));
+            deliveryData.put("phone", request.getParameter("o-phone"));
+
+            deliveryData.put("street", request.getParameter("o-street"));
+            deliveryData.put("commune", request.getParameter("o-commune"));
+            deliveryData.put("city", request.getParameter("o-city"));
+            deliveryData.put("province", request.getParameter("o-province"));
+            deliveryData.put("note", request.getParameter("note"));
+        }else {
+            int address_id = user.getAddress().getId();
+
+            String name_receive = user.getFullName();
+            String phone_number = user.getNumberPhone();
+
+            String street = user.getAddress().getStreet();
+            String commune = user.getAddress().getCommune();
+            String city = user.getAddress().getCity();
+            String provice = user.getAddress().getProvince();
 
 
-//        // Get data from form
-//        String name = request.getParameter("name");
-//        String phone = request.getParameter("phone");
-//        String address = request.getParameter("address");
-//        String otherPhone = request.getParameter("otherPhone");
-//        boolean otherAddressSelected = request.getParameter("otherAddress") != null;
-//        String note = request.getParameter("note");
-//        String paymentMethod = request.getParameter("payment");
-//
-//        // Collect other address info if selected
-//        Map<String, String> otherAddressInfo = null;
-//        if (otherAddressSelected) {
-//            otherAddressInfo = new HashMap<>();
-//            otherAddressInfo.put("fullName", request.getParameter("o-fullName"));
-//            otherAddressInfo.put("phone", request.getParameter("o-phone"));
-//            otherAddressInfo.put("street", request.getParameter("o-street"));
-//            otherAddressInfo.put("commune", request.getParameter("o-commune"));
-//            otherAddressInfo.put("city", request.getParameter("o-city"));
-//            otherAddressInfo.put("province", request.getParameter("o-province"));
-//        }
-//
-//        // Get data from session
-//        Cart cart = (Cart) request.getSession().getAttribute("cart");
-//        User user = (User) request.getSession().getAttribute("user");
-//
+            String note = request.getParameter("note");
 
-//
-//        Map<String, Object> deliveryInfo = new HashMap<>();
-//        deliveryInfo.put("name", name);
-//        deliveryInfo.put("phone", phone);
-//        deliveryInfo.put("address", address);
-//        deliveryInfo.put("otherPhone", otherPhone);
-//        deliveryInfo.put("otherAddressSelected", otherAddressSelected);
-//        deliveryInfo.put("otherAddress", otherAddressInfo);
-//        deliveryInfo.put("note", note);
-//        orderData.put("delivery", deliveryInfo);
-//
-//        orderData.put("paymentMethod", paymentMethod);
-//
-//        // Add product details from cart
-//        if (cart != null && cart.getItems() != null) {
-//            Map<String, Map<String, Object>> productDetails = new HashMap<>();
-//            for (Map.Entry<Integer, CartItem> entry : cart.getItems().entrySet()) {
-//                CartItem item = entry.getValue();
-//                Map<String, Object> product = new HashMap<>();
-//                product.put("id", item.getStyle().getId());
-//                product.put("name", item.getStyle().getProduct().getName());
-//                product.put("quantity", item.getQuantity());
-//                product.put("pricePerItem", item.getStyle().getProduct().getPrice().getLastPrice());
-//                product.put("totalPrice", item.getTotalPrice());
-//                // Assuming image is accessible from Style object
-//                product.put("image", item.getStyle().getImage());
-//
-//                productDetails.put(String.valueOf(item.getStyle().getId()), product);
-//            }
-//            orderData.put("products", productDetails);
-//        }
-//
-//        // Add order summary from cart
-//        if (cart != null) {
-//            Map<String, Object> orderSummary = new HashMap<>();
-//            orderSummary.put("subtotal", cart.getTotalPrice());
-//            orderSummary.put("shippingFee", cart.getShippingFee());
-//            orderSummary.put("total", cart.getLastPrice());
-//            orderData.put("orderSummary", orderSummary);
-//
-//            // Add voucher info if available in cart
-//            if (cart.getVoucher() != null) {
-//                 Map<String, Object> voucherInfo = new HashMap<>();
-//                 voucherInfo.put("code", cart.getVoucher().getCode());
-//                 voucherInfo.put("discountAmount", cart.getVoucher().getDiscountAmount());
-//                 // Add other relevant voucher details if needed
-//                 orderData.put("voucher", voucherInfo);
-//            } else {
-//                 orderData.put("voucher", null);
-//            }
-//        }
-//
-//        // Add user info (optional, depending on what you need in the JSON)
-//        if (user != null) {
-//            Map<String, Object> userInfo = new HashMap<>();
-//            userInfo.put("userId", user.getId());
-//            userInfo.put("fullName", user.getFullName());
-//            userInfo.put("email", user.getEmail());
-//            // Add other relevant user details if needed
-//            orderData.put("user", userInfo);
-//        }
+            deliveryData.put("address_id", address_id);
+            deliveryData.put("fullName", name_receive);
+            deliveryData.put("phone", phone_number);
+            deliveryData.put("street", street);
+            deliveryData.put("commune", commune);
+            deliveryData.put("city", city);
+            deliveryData.put("province", provice);
+            deliveryData.put("note", note);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("user", userData);
+        data.put("order",orderData);
+        data.put("payment",paymentData);
+        data.put("delivery",deliveryData);
 
         // Convert orderData to JSON string using Jackson ObjectMapper
         ObjectMapper objectMapper = new ObjectMapper();
 
-        String orderDataJson = objectMapper.writeValueAsString(orderData);
-
+        String orderDataJson = objectMapper.writeValueAsString(data);
 
         // Store JSON string in request attribute and forward to verifier.jsp
         request.setAttribute("orderDataJson", orderDataJson);
