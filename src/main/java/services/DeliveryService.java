@@ -13,6 +13,10 @@ public class DeliveryService {
     public boolean insertDelivery(Delivery delivery) {
         return dao.insertDelivery(delivery);
     }
+    public int insertDeliveryReturnId(Delivery delivery) {
+        return dao.insertDeliveryReturnId(delivery);
+    }
+
     public List<Delivery> getAllDeliveries() {
         AddressService addressService = new AddressService();
         List<Delivery> deliveries = dao.getAllDeliveries();

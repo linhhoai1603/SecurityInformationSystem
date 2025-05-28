@@ -140,7 +140,10 @@ public class OrderServlet extends HttpServlet {
             note,
             "Đang giao hàng"
         );
-        deliveryService.insertDelivery(delivery);
+        int delicery_id = deliveryService.insertDeliveryReturnId(delivery);
+
+
+
 
         // Trả về đối tượng Ordered
         return new Ordered(
