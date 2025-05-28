@@ -20,14 +20,17 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet(name = "VerifyOrderServlet", value = "/verifyOrder")
 public class VerifyOrderServlet extends HttpServlet {
 
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AddressService addressService = new AddressService();
 
 //        user infor
         User user = (User) request.getSession().getAttribute("user");
+
+        if(user == null) {
+            throw new IllegalStateException("Người dùng chưa đăng nhập");
+        }
+
         int id_user = user.getId();
         String fullname = user.getFullName();
         String email = user.getEmail();
@@ -42,6 +45,9 @@ public class VerifyOrderServlet extends HttpServlet {
 
 //        order infor - orderDetail infor, voucher infor, shipping fee
         Cart cart = (Cart) request.getSession().getAttribute("cart");
+        if(cart == null || cart.getItems().isEmpty()) {
+            throw new IllegalStateException("Giỏ hàng trống hoặc không tồn tại.");
+        }
         Map<String, Object> orderData = new HashMap<>();
         for(CartItem item: cart.getItems().values()) {
             Map<String, Object> productData = new HashMap<>();
@@ -61,7 +67,7 @@ public class VerifyOrderServlet extends HttpServlet {
             productData.put("price", price);
             productData.put("quantity", quantity);
 
-            orderData.put("product", productData);
+            orderData.put("product_" + product_id, productData);
         }
         double totalPrice = cart.getTotalPrice();
         double shippingFee = cart.getShippingFee();
@@ -148,6 +154,9 @@ public class VerifyOrderServlet extends HttpServlet {
         }
         request.setAttribute("orderDataHash", jsonHash);
         
+        // Thêm dòng này để lưu lại đối tượng Cart vào session trước khi forward
+        request.getSession().setAttribute("cart", cart);
+
         request.getRequestDispatcher("verifier.jsp").forward(request, response);
     }
 
