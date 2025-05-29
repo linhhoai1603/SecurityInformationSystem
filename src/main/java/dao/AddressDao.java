@@ -64,4 +64,16 @@ public class AddressDao {
         });
     }
 
+    public int insertAddressReturnId(Address address) {
+        String query = "insert into addresses (city, province, commune, street) values (?,?,?,?)";
+        return jdbi.withHandle(handle -> handle.createUpdate(query)
+                .bind(0, address.getCity())
+                .bind(1, address.getProvince())
+                .bind(2, address.getCommune())
+                .bind(3, address.getStreet())
+                .executeAndReturnGeneratedKeys("id")
+                .mapTo(Integer.class)
+                .findOnly());
+    }
+
 }
