@@ -31,6 +31,24 @@ public class VerifyOrderServlet extends HttpServlet {
             throw new IllegalStateException("Người dùng chưa đăng nhập");
         }
 
+        // Lấy khóa công khai của người dùng
+        String publicKey = null;
+        try {
+            services.UserKeyService userKeyService = new services.UserKeyService();
+            models.UserKeys userKey = userKeyService.getCurrentUserKey(user.getId());
+            if (userKey != null) {
+                publicKey = userKey.getPublicKey();
+            } else {
+                System.out.println("Không tìm thấy khóa công khai cho người dùng ID: " + user.getId());
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi khi lấy khóa công khai cho người dùng ID: " + user.getId());
+            e.printStackTrace();
+            publicKey = "Error retrieving public key"; // Hoặc xử lý lỗi theo cách khác
+        }
+
+        request.setAttribute("publicKey", publicKey); // Lưu khóa công khai vào request attribute
+
         int id_user = user.getId();
         String fullname = user.getFullName();
         String email = user.getEmail();

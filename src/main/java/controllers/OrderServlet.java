@@ -149,7 +149,7 @@ public class OrderServlet extends HttpServlet {
 
 
 //        insert order_signatures
-        String digitalSignature = "Hello";
+        String digitalSignature = request.getParameter("digitalSignature");
         UserKeyService userKeyService = new UserKeyService();
         System.out.println("UserKeyService created successfully");
         OrderSignatureService orderSignatureService = new OrderSignatureService();

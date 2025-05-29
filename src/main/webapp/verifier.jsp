@@ -45,13 +45,13 @@
         <%-- Input for public key --%>
         <div class="form-group mb-3">
             <label for="public_key" class="fw-bold">Public key:</label>
-            <input type="text" class="form-control" id="public_key" name="public_key" placeholder="Nhập nội public key">
+            <input type="text" class="form-control" id="public_key" name="public_key" value="${publicKey}" readonly>
         </div>
 
         <%-- Input for Signature --%>
         <div class="form-group mb-3">
-            <label for="signature" class="fw-bold">Nội dung ký xác nhận:</label>
-            <input type="text" class="form-control" id="signature" name="signature" placeholder="Nhập nội dung ký">
+            <label for="digitalSignature" class="fw-bold">Nội dung ký xác nhận:</label>
+            <input type="text" class="form-control" id="digitalSignature" name="digitalSignature" placeholder="Nhập nội dung ký">
         </div>
 
         <%-- Submit button --%>
