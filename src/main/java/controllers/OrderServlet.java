@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.*;
 
+import dao.UserKeyDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,6 +15,8 @@ import java.util.Map;
 public class OrderServlet extends HttpServlet {
     String methodPay;
     Delivery delivery;
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // get info and create order from cart
         methodPay = request.getParameter("payment");
@@ -99,6 +102,7 @@ public class OrderServlet extends HttpServlet {
         double lastPrice = cart.getLastPrice();
         Order order = new Order(user, voucher, status, totalPrice, lastPrice);
         int idOrder = orderService.insertOrder(order);
+        order.setId(idOrder);
 
 
 //        // Tạo orderDetails
@@ -141,9 +145,34 @@ public class OrderServlet extends HttpServlet {
             "Đang giao hàng"
         );
         int delicery_id = deliveryService.insertDeliveryReturnId(delivery);
+        delivery.setId(delicery_id);
 
 
+//        insert order_signatures
+        String digitalSignature = "Hello";
+        UserKeyService userKeyService = new UserKeyService();
+        System.out.println("UserKeyService created successfully");
+        OrderSignatureService orderSignatureService = new OrderSignatureService();
 
+        System.out.println("user.getId(): " + user.getId());
+
+        UserKeys userKey = new UserKeys();
+        try {
+            userKey = userKeyService.getCurrentUserKey(user.getId());
+            System.out.println("UserKey retrieved: " + (userKey != null ? userKey.toString() : "null"));
+        } catch (Exception e) {
+            System.out.println("Error calling getCurrentUserKey: " + e.getMessage());
+            e.printStackTrace();
+        };
+
+        OrderSignatures orderSignatures = new OrderSignatures(order, userKey, delivery, digitalSignature, "verified");
+
+        // Kiểm tra các object trước khi tạo OrderSignatures
+        System.out.println("Order ID: " + (order != null ? order.getId() : "null"));
+        System.out.println("UserKey ID: " + (userKey != null ? userKey.getId() : "null"));
+        System.out.println("Delivery ID: " + (delivery != null ? delivery.getId() : "null"));
+
+        orderSignatureService.insertOrderSignature(orderSignatures);
 
         // Trả về đối tượng Ordered
         return new Ordered(

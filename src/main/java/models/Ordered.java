@@ -13,6 +13,16 @@ public class Ordered {
     private String address;
     private String methodPayment;
 
+    public Ordered(Cart cart, int idOrder, LocalDateTime timeOrdered, String personName, String note, String address, String methodPayment) {
+        this.cart = cart;
+        this.idOrder = idOrder;
+        this.timeOrdered = timeOrdered;
+        this.personName = personName;
+        this.note = note;
+        this.address = address;
+        this.methodPayment = methodPayment;
+    }
+
     public Cart getCart() {
         return cart;
     }
@@ -69,15 +79,7 @@ public class Ordered {
         this.methodPayment = methodPayment;
     }
 
-    public Ordered(Cart cart, int idOrder, LocalDateTime timeOrdered, String personName, String note, String address, String methodPayment) {
-        this.cart = cart;
-        this.idOrder = idOrder;
-        this.timeOrdered = timeOrdered;
-        this.personName = personName;
-        this.note = note;
-        this.address = address;
-        this.methodPayment = methodPayment;
-    }
+
 
     public Ordered() {
     }

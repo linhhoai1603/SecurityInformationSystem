@@ -9,17 +9,20 @@ public class OrderSignatures implements Serializable {
     private UserKeys userKeys;
     private Delivery delivery;
     private String digitalSignature;
-    private boolean verified;
+    private String verified;
     private LocalDateTime create_at;
 
-    public OrderSignatures(int id, Order order, UserKeys userKeys, Delivery delivery, String digitalSignature, boolean verified, LocalDateTime create_at) {
-        this.id = id;
+    public OrderSignatures(Order order, UserKeys userKeys, Delivery delivery, String digitalSignature, String verified) {
         this.order = order;
         this.userKeys = userKeys;
         this.delivery = delivery;
         this.digitalSignature = digitalSignature;
         this.verified = verified;
-        this.create_at = create_at;
+        this.create_at = LocalDateTime.now();
+    }
+
+    public OrderSignatures() {
+
     }
 
     public int getId() {
@@ -62,11 +65,11 @@ public class OrderSignatures implements Serializable {
         this.digitalSignature = digitalSignature;
     }
 
-    public boolean isVerified() {
+    public String getVerified() {
         return verified;
     }
 
-    public void setVerified(boolean verified) {
+    public void setVerified(String verified) {
         this.verified = verified;
     }
 

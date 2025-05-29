@@ -94,10 +94,9 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", numberPhone='" + numberPhone + '\'' +
-                ", address=" + address.toString() +
+                ", address=" + (address != null ? address.toString() : "null") +
                 '}';
     }
-
 
 
 }
