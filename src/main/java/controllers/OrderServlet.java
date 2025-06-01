@@ -9,6 +9,8 @@ import jakarta.servlet.annotation.*;
 import models.*;
 import services.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @WebServlet(name = "OrderServlet", value = "/order")
@@ -147,6 +149,10 @@ public class OrderServlet extends HttpServlet {
         int delicery_id = deliveryService.insertDeliveryReturnId(delivery);
         delivery.setId(delicery_id);
 
+//        insert payments
+        PaymentService paymentService = new PaymentService();
+        Payment payment = new Payment(order, methodPay, "Pending");
+        paymentService.insertPayment(payment);
 
 //        insert order_signatures
         String digitalSignature = request.getParameter("digitalSignature");

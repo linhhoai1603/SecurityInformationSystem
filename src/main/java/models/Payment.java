@@ -6,15 +6,21 @@ import java.time.LocalDateTime;
 public class Payment implements Serializable {
    private int id;
    private Order order;
-   private int method;
-   private int status;
+   private String method;
+   private String status;
    private LocalDateTime timePayment;
    private double price;
    public Payment(){
 
    }
-   public Payment(int id, Order order, int method, int status, LocalDateTime timePayment) {
-       this.id  = id;
+
+    public Payment(Order order, String method, String status) {
+        this.order = order;
+        this.method = method;
+        this.status = status;
+    }
+
+   public Payment(Order order, String method, String status, LocalDateTime timePayment) {
        this.order = order;
        this.method = method;
        this.status = status;
@@ -38,19 +44,19 @@ public class Payment implements Serializable {
         this.order = order;
     }
 
-    public int getMethod() {
+    public String getMethod() {
         return method;
     }
 
-    public void setMethod(int method) {
+    public void setMethod(String method) {
         this.method = method;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -70,7 +76,7 @@ public class Payment implements Serializable {
         this.price = price;
     }
 
-    public Payment(int id, Order order, int method, int status, LocalDateTime timePayment, double price) {
+    public Payment(int id, Order order, String method, String status, LocalDateTime timePayment, double price) {
         this.id = id;
         this.order = order;
         this.method = method;
