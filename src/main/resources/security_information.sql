@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 29/05/2025 11:54:09
+ Date: 01/06/2025 23:22:15
 */
 
 SET NAMES utf8mb4;
@@ -51,7 +51,7 @@ CREATE TABLE `addresses`  (
   `commune` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `street` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of addresses
@@ -66,6 +66,11 @@ INSERT INTO `addresses` VALUES (7, 'Cần Thơ', 'Cần Thơ', 'Ninh Kiều', '3
 INSERT INTO `addresses` VALUES (8, 'Hải Phòng', 'Hải Phòng', 'Lê Chân', 'Trần Nguyên Hãn');
 INSERT INTO `addresses` VALUES (9, 'Huế', 'Thừa Thiên Huế', 'Phú Hội', 'Hùng Vương');
 INSERT INTO `addresses` VALUES (10, 'Nha Trang', 'Khánh Hòa', 'Vĩnh Hải', 'Trần Phú');
+INSERT INTO `addresses` VALUES (11, 'Sample City', 'Sample Province', 'Sample Commune', 'Sample Street');
+INSERT INTO `addresses` VALUES (12, 'Test City for UserKey', 'Test Province for UserKey', 'Test Commune for UserKey', 'Test Street for UserKey');
+INSERT INTO `addresses` VALUES (13, 'Sample City', 'Sample Province', 'Sample Commune', 'Sample Street');
+INSERT INTO `addresses` VALUES (14, 'Sample City', 'Sample Province', 'Sample Commune', 'Sample Street');
+INSERT INTO `addresses` VALUES (15, 'Sample City', 'Sample Province', 'Sample Commune', 'Sample Street');
 
 -- ----------------------------
 -- Table structure for categories
@@ -105,7 +110,7 @@ CREATE TABLE `deliveries`  (
   INDEX `idOrder`(`idOrder`) USING BTREE,
   CONSTRAINT `deliveries_ibfk_1` FOREIGN KEY (`idAddress`) REFERENCES `addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `deliveries_ibfk_2` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of deliveries
@@ -121,6 +126,34 @@ INSERT INTO `deliveries` VALUES (20, 8, 4, 'Le Minh C', '0903456789', 25, 60, 'K
 INSERT INTO `deliveries` VALUES (21, 9, 5, 'Pham Thi D', '0904567890', 18, 45, 'Giao tận nơi', 'In transit', '2024-12-18 14:00:00');
 INSERT INTO `deliveries` VALUES (22, 10, 6, 'Hoang Minh E', '0905678901', 22.5, 55, 'Giao vào buổi tối', 'Delivered', '2024-12-18 17:30:00');
 INSERT INTO `deliveries` VALUES (32, 30, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-30 22:43:30');
+INSERT INTO `deliveries` VALUES (33, 30, 1, 'Test User', '1234567890', 15.5, 5, 'Test delivery note', 'Pending', '2025-05-31 17:43:15');
+INSERT INTO `deliveries` VALUES (34, 30, 1, 'Test User', '1234567890', 15.5, 5, 'Test delivery note', 'Pending', '2025-05-31 17:56:57');
+INSERT INTO `deliveries` VALUES (35, 35, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 17:58:09');
+INSERT INTO `deliveries` VALUES (36, 36, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 17:59:15');
+INSERT INTO `deliveries` VALUES (37, 37, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 20:13:16');
+INSERT INTO `deliveries` VALUES (38, 38, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 20:17:48');
+INSERT INTO `deliveries` VALUES (39, 39, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:09:06');
+INSERT INTO `deliveries` VALUES (40, 40, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:14:01');
+INSERT INTO `deliveries` VALUES (41, 41, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:16:15');
+INSERT INTO `deliveries` VALUES (42, 42, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:17:49');
+INSERT INTO `deliveries` VALUES (43, 43, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:19:20');
+INSERT INTO `deliveries` VALUES (44, 44, 15, 'Test Recipient', '0987654321', 10.5, 5, 'Deliver to front door', 'Processing', '2025-05-30 21:23:07');
+INSERT INTO `deliveries` VALUES (45, 45, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:24:11');
+INSERT INTO `deliveries` VALUES (46, 46, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:31:44');
+INSERT INTO `deliveries` VALUES (47, 47, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:35:10');
+INSERT INTO `deliveries` VALUES (48, 48, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:38:11');
+INSERT INTO `deliveries` VALUES (49, 49, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:41:44');
+INSERT INTO `deliveries` VALUES (50, 50, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 21:55:36');
+INSERT INTO `deliveries` VALUES (51, 51, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:00:07');
+INSERT INTO `deliveries` VALUES (52, 52, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:07:52');
+INSERT INTO `deliveries` VALUES (53, 53, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:13:32');
+INSERT INTO `deliveries` VALUES (54, 54, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:18:45');
+INSERT INTO `deliveries` VALUES (55, 55, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:29:26');
+INSERT INTO `deliveries` VALUES (56, 56, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:43:16');
+INSERT INTO `deliveries` VALUES (57, 57, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:46:16');
+INSERT INTO `deliveries` VALUES (58, 58, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 22:52:15');
+INSERT INTO `deliveries` VALUES (59, 59, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-05-31 23:11:44');
+INSERT INTO `deliveries` VALUES (60, 60, 1, 'PHAN VĂN HOÀNG', '0335059497', 0, 30000, '', 'Đang giao hàng', '2025-06-03 13:19:30');
 
 -- ----------------------------
 -- Table structure for message
@@ -156,7 +189,7 @@ CREATE TABLE `order_details`  (
   INDEX `idOrder`(`idOrder`) USING BTREE,
   CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`idStyle`) REFERENCES `styles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 126 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 153 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_details
@@ -222,6 +255,33 @@ INSERT INTO `order_details` VALUES (122, 27, 352, 1, 105000, 0.5);
 INSERT INTO `order_details` VALUES (123, 28, 344, 1, 42000, 0.5);
 INSERT INTO `order_details` VALUES (124, 29, 344, 1, 42000, 0.5);
 INSERT INTO `order_details` VALUES (125, 30, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (126, 33, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (127, 34, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (128, 35, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (129, 36, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (130, 37, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (131, 38, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (132, 39, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (133, 40, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (134, 41, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (135, 42, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (136, 43, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (137, 45, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (138, 46, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (139, 47, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (140, 48, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (141, 49, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (142, 50, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (143, 51, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (144, 52, 344, 2, 84000, 1);
+INSERT INTO `order_details` VALUES (145, 53, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (146, 54, 353, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (147, 55, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (148, 56, 344, 1, 42000, 0.5);
+INSERT INTO `order_details` VALUES (149, 57, 266, 1, 56000, 0.5);
+INSERT INTO `order_details` VALUES (150, 58, 352, 1, 105000, 0.5);
+INSERT INTO `order_details` VALUES (151, 59, 324, 1, 112500, 0.5);
+INSERT INTO `order_details` VALUES (152, 60, 344, 1, 42000, 0.5);
 
 -- ----------------------------
 -- Table structure for order_signatures
@@ -242,11 +302,16 @@ CREATE TABLE `order_signatures`  (
   CONSTRAINT `order_signatures_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `order_signatures_ibfk_2` FOREIGN KEY (`key_id`) REFERENCES `user_keys` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `order_signatures_ibfk_3` FOREIGN KEY (`delivery_id`) REFERENCES `deliveries` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_signatures
 -- ----------------------------
+INSERT INTO `order_signatures` VALUES (5, 8, 1, 32, 'OE2anznvxFEGM52+pZ8rnQyn6j/m4IpN4Bcy6b7cUcg3+OqrEr4EMS8O1nklOCX7MUfIEqN4yyXIy4D0CrPSLWkC20PrKSyxqE0BkbkIOOTaxFvOnK8HGHVT7r5xqTCBi/cVtNIrMMewSas4xqpUaaNxG4tMZpvn/mUZdPQQ7jzZwgL9QU50xleyDGIZBQQmcHDyp4TE7/nVp9npqmSL6wD+dJBXjZK6URLhptS0OqDhRYtm+MtNabL/bvbdLkM', 'verified', '2025-05-29 11:58:56');
+INSERT INTO `order_signatures` VALUES (7, 44, 8, 44, 'dummy_signature_for_testing', 'verified', NULL);
+INSERT INTO `order_signatures` VALUES (9, 58, 9, 58, 'Hello', 'verified', NULL);
+INSERT INTO `order_signatures` VALUES (10, 59, 9, 59, 'digitalSignatureTest', 'verified', NULL);
+INSERT INTO `order_signatures` VALUES (11, 60, 9, 60, '', 'verified', NULL);
 
 -- ----------------------------
 -- Table structure for orders
@@ -265,7 +330,7 @@ CREATE TABLE `orders`  (
   INDEX `idVoucher`(`idVoucher`) USING BTREE,
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`idVoucher`) REFERENCES `vouchers` (`idVoucher`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -300,6 +365,36 @@ INSERT INTO `orders` VALUES (27, '2025-05-28 22:29:31', 11, NULL, 'Đang giao h�
 INSERT INTO `orders` VALUES (28, '2025-05-28 22:35:50', 11, NULL, 'Đang giao hàng', 42000, 72000);
 INSERT INTO `orders` VALUES (29, '2025-05-28 22:40:49', 11, NULL, 'Đang giao hàng', 42000, 72000);
 INSERT INTO `orders` VALUES (30, '2025-05-28 22:43:30', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (31, '2025-05-29 12:28:25', 14, NULL, 'Pending', 100, 90);
+INSERT INTO `orders` VALUES (32, '2025-05-29 12:32:16', 15, NULL, 'Pending', 100, 90);
+INSERT INTO `orders` VALUES (33, '2025-05-29 17:24:20', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (34, '2025-05-29 17:25:53', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (35, '2025-05-29 17:58:09', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (36, '2025-05-29 17:59:15', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (37, '2025-05-29 20:13:16', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (38, '2025-05-29 20:17:48', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (39, '2025-05-29 21:09:06', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (40, '2025-05-29 21:14:01', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (41, '2025-05-29 21:16:15', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (42, '2025-05-29 21:17:49', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (43, '2025-05-29 21:19:20', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (44, '2025-05-29 21:23:07', 16, NULL, 'Pending', 100, 90);
+INSERT INTO `orders` VALUES (45, '2025-05-29 21:24:11', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (46, '2025-05-29 21:31:44', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (47, '2025-05-29 21:35:10', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (48, '2025-05-29 21:38:11', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (49, '2025-05-29 21:41:44', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (50, '2025-05-29 21:55:36', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (51, '2025-05-29 22:00:07', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (52, '2025-05-29 22:07:52', 11, NULL, 'Đang giao hàng', 84000, 114000);
+INSERT INTO `orders` VALUES (53, '2025-05-29 22:13:32', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (54, '2025-05-29 22:18:45', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (55, '2025-05-29 22:29:26', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (56, '2025-05-29 22:43:15', 11, NULL, 'Đang giao hàng', 42000, 72000);
+INSERT INTO `orders` VALUES (57, '2025-05-29 22:46:16', 11, NULL, 'Đang giao hàng', 56000, 86000);
+INSERT INTO `orders` VALUES (58, '2025-05-29 22:52:15', 11, NULL, 'Đang giao hàng', 105000, 135000);
+INSERT INTO `orders` VALUES (59, '2025-05-29 23:11:44', 11, NULL, 'Đang giao hàng', 112500, 142500);
+INSERT INTO `orders` VALUES (60, '2025-06-01 13:19:30', 11, NULL, 'Đang giao hàng', 42000, 72000);
 
 -- ----------------------------
 -- Table structure for payments
@@ -308,22 +403,24 @@ DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idOrder` int(11) NOT NULL,
-  `method` tinyint(4) NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time` datetime NOT NULL,
-  `price` double NOT NULL,
+  `method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `time` datetime NULL DEFAULT NULL,
+  `price` double NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idOrder`(`idOrder`) USING BTREE,
   CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of payments
 -- ----------------------------
-INSERT INTO `payments` VALUES (5, 2, 1, 'Completed', '2024-12-17 10:00:00', 150);
-INSERT INTO `payments` VALUES (6, 3, 2, 'Pending', '2024-12-17 11:00:00', 200);
-INSERT INTO `payments` VALUES (7, 4, 1, 'Completed', '2024-12-17 12:00:00', 120);
-INSERT INTO `payments` VALUES (8, 5, 2, 'Completed', '2024-12-17 14:00:00', 250);
+INSERT INTO `payments` VALUES (1, 60, 'Transfer', 'Pending', '2025-06-01 23:02:37', 1);
+INSERT INTO `payments` VALUES (5, 2, 'Cash', 'Completed', '2024-12-17 10:00:00', 150);
+INSERT INTO `payments` VALUES (6, 3, 'Transfer', 'Pending', '2024-12-17 11:00:00', 200);
+INSERT INTO `payments` VALUES (7, 4, 'Transfer', 'Completed', '2024-12-17 12:00:00', 120);
+INSERT INTO `payments` VALUES (8, 5, 'Cash', 'Completed', '2024-12-17 14:00:00', 250);
+INSERT INTO `payments` VALUES (9, 60, 'Cash', 'Pending', '2025-06-01 23:21:10', 1);
 
 -- ----------------------------
 -- Table structure for prices
@@ -656,7 +753,7 @@ INSERT INTO `products` VALUES (103, 'Lụa', 50, '2024-01-03', 1, 1, 'Vải lụ
 INSERT INTO `products` VALUES (104, 'Len', 200, '2024-01-04', 1, 1, 'Vải len dày, ấm áp', 1, 104, 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lo7tmuvh1ipjd5.webp', 104);
 INSERT INTO `products` VALUES (105, 'Polyester', 300, '2024-01-05', 1, 1, 'Vải polyester bền, không bị nhăn', 1, 105, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3SqNSPU0WFNCCMCOJUEiuY-GI9hka1L4TUg&s', 105);
 INSERT INTO `products` VALUES (106, 'Nilon', 150, '2024-01-06', 1, 1, 'Vải nilon nhẹ, chống thấm nước', 1, 106, 'https://everon.com/upload/upload-images/vai-nilon-1.jpg', 106);
-INSERT INTO `products` VALUES (107, 'Vải bò (Denim)', 72, '2024-01-07', 1, 1, 'Vải bò chắc chắn, thời trang', 1, 107, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2clZyyyzwUD0BL2XV75gQTj-xklzd-1QSow&s', 107);
+INSERT INTO `products` VALUES (107, 'Vải bò (Denim)', 62, '2024-01-07', 1, 1, 'Vải bò chắc chắn, thời trang', 1, 107, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2clZyyyzwUD0BL2XV75gQTj-xklzd-1QSow&s', 107);
 INSERT INTO `products` VALUES (108, 'Vải satin', 90, '2024-01-08', 1, 1, 'Vải satin mềm mại, bóng mượt', 1, 108, 'https://cdn.shopify.com/s/files/1/0428/4219/4071/files/vai-satin.jpg?v=1699784134', 108);
 INSERT INTO `products` VALUES (109, 'Vải nhung', 60, '2024-01-09', 1, 1, 'Vải nhung êm ái, sang trọng', 1, 109, 'https://thanhtungtextile.vn/upload/trang-san-pham/vai-nhung-tuyet/gia-vai-nhung-tuyet1-inkjpeg.jpeg', 109);
 INSERT INTO `products` VALUES (110, 'Vải chiffon', 110, '2024-01-10', 1, 1, 'Vải chiffon mỏng manh, nhẹ nhàng', 1, 110, 'https://file.hstatic.net/1000058447/article/vai_chiffon_182d2caaadf64696b63c7c207f6747bc.jpg', 110);
@@ -685,7 +782,7 @@ INSERT INTO `products` VALUES (132, 'Vải muslin', 50, '2024-02-01', 1, 1, 'V�
 INSERT INTO `products` VALUES (133, 'Vải thô (Burlap)', 60, '2024-02-02', 1, 1, 'Vải thô cứng, bền', 1, 133, 'https://tuivaibohcm.com/wp-content/uploads/2018/08/su-dung-vai-bo-tho-300x200.jpg', 133);
 INSERT INTO `products` VALUES (134, 'Vải chambray', 80, '2024-02-03', 1, 1, 'Vải chambray mềm mại', 1, 134, 'https://pubcdn.ivymoda.com/files/news/2024/05/10/37faf5a3c2704a6783f4ec514284352f.jpg', 134);
 INSERT INTO `products` VALUES (135, 'Vải shantung', 50, '2024-02-04', 1, 1, 'Vải shantung cứng, bóng', 1, 135, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq-VmBWGB5K7vY-vrE5V821Q2loEBQMzPJHg&s', 135);
-INSERT INTO `products` VALUES (136, 'Vải moleskin', 39, '2024-02-05', 1, 1, 'Vải moleskin mềm mịn', 1, 136, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOrXvQxuXodqjRgd3alHHYRIXpc823YJ8cMQ&s', 136);
+INSERT INTO `products` VALUES (136, 'Vải moleskin', 38, '2024-02-05', 1, 1, 'Vải moleskin mềm mịn', 1, 136, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOrXvQxuXodqjRgd3alHHYRIXpc823YJ8cMQ&s', 136);
 INSERT INTO `products` VALUES (137, 'Vải seersucker', 120, '2024-02-06', 1, 1, 'Vải seersucker nhẹ, co giãn', 1, 137, 'https://phulieuthanhphong.vn/upload/news/vai-seersuck-76703-1322.jpg', 137);
 INSERT INTO `products` VALUES (138, 'Vải in sáp (Wax Print)', 80, '2024-02-07', 1, 1, 'Vải in sáp họa tiết sắc nét', 1, 138, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH8vs8Tj-ie958tSSjuPOCbNdAO8wTLivH6Q&s', 138);
 INSERT INTO `products` VALUES (139, 'Denim co giãn (Stretch Denim)', 150, '2024-02-08', 1, 1, 'Denim co giãn, dễ mặc', 1, 139, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy9ldiENmsEXvqsD5WBhVbqgplj9zB2FhjJw&s', 139);
@@ -695,11 +792,11 @@ INSERT INTO `products` VALUES (142, 'Vải boucle', 90, '2024-02-11', 1, 1, 'V�
 INSERT INTO `products` VALUES (143, 'Vải herringbone', 80, '2024-02-12', 1, 1, 'Vải herringbone với họa tiết xương cá', 1, 143, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGL7AAPyeuBcjioDiwI3OIOdyY0ppP--xQ8g&s', 143);
 INSERT INTO `products` VALUES (144, 'Vải kaki', 120, '2024-02-13', 1, 1, 'Vải khaki bền, chắc chắn', 1, 144, 'https://xuongmayaodongphuc.vn/wp-content/uploads/2023/09/vai-kaki-la-gi.jpg', 144);
 INSERT INTO `products` VALUES (145, 'Vải oxford', 100, '2024-02-14', 1, 1, 'Vải oxford dày, thoáng khí', 1, 145, 'https://canifa.com/blog/wp-content/uploads/2024/08/vai-oxford-1.webp', 145);
-INSERT INTO `products` VALUES (146, 'Vải pique', 144, '2024-02-15', 1, 1, 'Vải pique bền, có cấu trúc', 1, 146, 'https://cdn.shopify.com/s/files/1/0681/2821/1221/files/kham-pha-nhung-dac-tinh-vuot-troi-cua-vai-pique_480x480.jpg?v=1698295661', 146);
+INSERT INTO `products` VALUES (146, 'Vải pique', 134, '2024-02-15', 1, 1, 'Vải pique bền, có cấu trúc', 1, 146, 'https://cdn.shopify.com/s/files/1/0681/2821/1221/files/kham-pha-nhung-dac-tinh-vuot-troi-cua-vai-pique_480x480.jpg?v=1698295661', 146);
 INSERT INTO `products` VALUES (147, 'Vải gabardine co giãn', 180, '2024-02-16', 1, 1, 'Vải gabardine co giãn, dễ di chuyển', 1, 147, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTthzEXN5-jNVWDJDYXnqZuZepWhT4bmjlEdQ&s', 147);
 INSERT INTO `products` VALUES (148, 'Vải spandex satin', 130, '2024-02-17', 1, 1, 'Vải spandex satin có độ bóng', 1, 148, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSewoakbNc6KC4UWMcnkNzz2iZiBPQEfhUKtA&s', 148);
 INSERT INTO `products` VALUES (149, 'Vải linen', 140, '2024-02-18', 1, 1, 'Vải linen mát mẻ, thoáng khí', 1, 149, 'https://cdn.shopify.com/s/files/1/0681/2821/1221/files/vai-linen-la-gi_480x480.png?v=1698205716', 149);
-INSERT INTO `products` VALUES (150, 'Vải nylon', 95, '2024-09-17', 1, 1, 'Vải nylon mát mẻ cho mùa hè của bạn', 1, 150, 'https://bizweb.dktcdn.net/thumb/grande/100/168/179/files/huong-dan-phan-biet-vali-vai-polyester-va-vai-nylon-3-jpg.jpg?v=1525017213403', 150);
+INSERT INTO `products` VALUES (150, 'Vải nylon', 88, '2024-09-17', 1, 1, 'Vải nylon mát mẻ cho mùa hè của bạn', 1, 150, 'https://bizweb.dktcdn.net/thumb/grande/100/168/179/files/huong-dan-phan-biet-vali-vai-polyester-va-vai-nylon-3-jpg.jpg?v=1525017213403', 150);
 INSERT INTO `products` VALUES (151, 'Vải gấm cao cấp', 50, '2024-07-01', 3, 1, 'Vải gấm cao cấp, thích hợp cho rèm cửa và trang trí nội thất.', 1, 151, 'https://product.hstatic.net/1000209173/product/357477227_664815889020749_5326874058597378898_n_f7d72b53f6c4490bb113bf014f982e45_master.jpg', 151);
 INSERT INTO `products` VALUES (152, 'Vải linen tự nhiên', 35, '2024-07-02', 3, 1, 'Vải linen tự nhiên, thoáng mát, lý tưởng cho ghế sofa và gối.', 1, 152, 'https://file.hstatic.net/200000887901/file/vai-linen-la-gi-6.jpg', 152);
 INSERT INTO `products` VALUES (153, 'Vải thun cotton', 60, '2024-07-03', 3, 1, 'Vải cotton mềm mại, dễ chịu, sử dụng cho thảm và các vật dụng trang trí.', 1, 153, 'https://vaithunthethaosaigon.com/uploadwb/hinhsp/vai_thun_gan_12638202074810_b_.jpg', 153);
@@ -1015,7 +1112,7 @@ INSERT INTO `styles` VALUES (262, 105, 'Trắng', 'https://dongphucbenhvien.com.
 INSERT INTO `styles` VALUES (263, 105, 'Đen', 'https://vietthangloi.vn/wp-content/uploads/2023/05/vai-oxford-balo-chong-nuoc.jpg', 30);
 INSERT INTO `styles` VALUES (264, 106, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRb_aeOLyuwZRlovq9w8sHV1pKJnq3vpfN6Q&s', 60);
 INSERT INTO `styles` VALUES (265, 106, 'Đỏ', 'https://demxanh.com/media/news/1611_vai_nylon6.jpg', 40);
-INSERT INTO `styles` VALUES (266, 107, 'Xanh dương', 'https://mayhopphat.com/wp-content/uploads/2022/02/Vai-jean.jpg', 42);
+INSERT INTO `styles` VALUES (266, 107, 'Xanh dương', 'https://mayhopphat.com/wp-content/uploads/2022/02/Vai-jean.jpg', 32);
 INSERT INTO `styles` VALUES (267, 107, 'Đen', 'https://png.pngtree.com/thumb_back/fw800/background/20221205/pngtree-black-jeans-denim-texture-pattern-background-image_1479666.jpg', 30);
 INSERT INTO `styles` VALUES (268, 108, 'Hồng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8FhKo3ZOwK0bwikjEwtzULFu2uIo0Iqb_DA&s', 60);
 INSERT INTO `styles` VALUES (269, 108, 'Vàng', 'https://nhaxasilk.com/wp-content/uploads/2023/06/ST04-0.jpg', 40);
@@ -1073,7 +1170,7 @@ INSERT INTO `styles` VALUES (320, 134, 'Xanh', 'https://toplistninhhiep.vn/userf
 INSERT INTO `styles` VALUES (321, 134, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 40);
 INSERT INTO `styles` VALUES (322, 135, 'Trắng', 'https://dongphucbenhvien.com.vn/upload/images/vai-kate-trang-01.jpg', 50);
 INSERT INTO `styles` VALUES (323, 135, 'Xanh dương', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0gTzk4XwnFSfrEPv_HvJ5zHZ6gsSBSDkjnw&s', 30);
-INSERT INTO `styles` VALUES (324, 136, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdnyB77DCqnm10nopJKuCUxxBHJIY_PGKC6w&s', 59);
+INSERT INTO `styles` VALUES (324, 136, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdnyB77DCqnm10nopJKuCUxxBHJIY_PGKC6w&s', 58);
 INSERT INTO `styles` VALUES (325, 136, 'Xanh', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMyHrM3Gyvdg63vz5E0HzXV0LlCzhRGedQEw&s', 40);
 INSERT INTO `styles` VALUES (326, 137, 'Đen', 'https://s.alicdn.com/@sc04/kf/Udf64a312178240888e99d0aa20c51547J.jpg_720x720q50.jpg', 50);
 INSERT INTO `styles` VALUES (327, 137, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 30);
@@ -1093,7 +1190,7 @@ INSERT INTO `styles` VALUES (340, 144, 'Trắng', 'https://dongphucbenhvien.com.
 INSERT INTO `styles` VALUES (341, 144, 'Xanh dương', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ok6IOAkDeQdAO_y2Q-8XrIVXUsBPhydhtw&s', 40);
 INSERT INTO `styles` VALUES (342, 145, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvAJfZZ7stN3Ze2br3YLtwVxuSAtelN46Ybw&s', 50);
 INSERT INTO `styles` VALUES (343, 145, 'Đỏ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKpAcXq07nAucFcuskLti_fAIOUiGUjYLDmw&s', 30);
-INSERT INTO `styles` VALUES (344, 146, 'Xanh lá', 'https://vuanem.com/blog/wp-content/uploads/2023/11/vai-pique-la-gi.jpeg', 54);
+INSERT INTO `styles` VALUES (344, 146, 'Xanh lá', 'https://vuanem.com/blog/wp-content/uploads/2023/11/vai-pique-la-gi.jpeg', 44);
 INSERT INTO `styles` VALUES (345, 146, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 40);
 INSERT INTO `styles` VALUES (346, 147, 'Trắng', 'https://dongphucbenhvien.com.vn/upload/images/vai-kate-trang-01.jpg', 50);
 INSERT INTO `styles` VALUES (347, 147, 'Đen', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lwzbhpdho4pl1f', 30);
@@ -1101,8 +1198,8 @@ INSERT INTO `styles` VALUES (348, 148, 'Xanh dương', 'https://encrypted-tbn0.g
 INSERT INTO `styles` VALUES (349, 148, 'Đỏ', 'https://s.alicdn.com/@sc04/kf/H6d9882253c7042e4aba669cd96b2910bt.jpg_720x720q50.jpg', 40);
 INSERT INTO `styles` VALUES (350, 149, 'Trắng', 'https://dongphucbenhvien.com.vn/upload/images/vai-kate-trang-01.jpg', 50);
 INSERT INTO `styles` VALUES (351, 149, 'Xanh lá', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3NKLUhTbUASgcUIxVQRbCpLrxxoUE_Nv0_g&s', 30);
-INSERT INTO `styles` VALUES (352, 150, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRb_aeOLyuwZRlovq9w8sHV1pKJnq3vpfN6Q&s', 55);
-INSERT INTO `styles` VALUES (353, 150, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 40);
+INSERT INTO `styles` VALUES (352, 150, 'Vàng', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRb_aeOLyuwZRlovq9w8sHV1pKJnq3vpfN6Q&s', 49);
+INSERT INTO `styles` VALUES (353, 150, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 39);
 INSERT INTO `styles` VALUES (354, 151, 'Trắng', 'https://dongphucbenhvien.com.vn/upload/images/vai-kate-trang-01.jpg', 50);
 INSERT INTO `styles` VALUES (355, 151, 'Xám', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0bKrMJoOu6MNHzoxd0pAoue1ah8KfSDGlQ&s', 60);
 INSERT INTO `styles` VALUES (356, 151, 'Be', 'https://detkimkienhoa.com/wp-content/uploads/2021/07/dia-chi-mua-vai-cotton-4-chieu-cvc-60-40.jpg', 40);
@@ -1398,16 +1495,22 @@ CREATE TABLE `user_keys`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `public_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` datetime NULL DEFAULT NULL,
+  `created_at` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `user_keys_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_keys
 -- ----------------------------
 INSERT INTO `user_keys` VALUES (1, 8, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjX8NKh2EAsLY5xqlxwTmQ30AWEL2vcBltfLIjqlFbgZ2rsX/Rr30DIZ6pPwQtNc5idqGoAHJxz002EJkOXascPIE8TQ8i1C2t+TrXVpU44YatqsC3caXB0bfKFs22suoZlgNVwyCDb6SiniY+Njnx7NVX0UUltk53EFkGIDPalwxZX267M3b6rpVzP+g5JhjIoJfLXux6eN09a2zktb', NULL);
+INSERT INTO `user_keys` VALUES (2, 13, 'sample_public_key_for_testing', '2025-05-29 12:28:06');
+INSERT INTO `user_keys` VALUES (3, 14, 'sample_public_key', '2025-05-29 12:28:25');
+INSERT INTO `user_keys` VALUES (4, 15, 'sample_public_key', '2025-05-29 12:32:16');
+INSERT INTO `user_keys` VALUES (5, 8, 'public key test', NULL);
+INSERT INTO `user_keys` VALUES (8, 16, 'sample_public_key', '2025-05-29 21:23:07');
+INSERT INTO `user_keys` VALUES (9, 11, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjX8NKh2EAsLY5xqlxwTmQ30AWEL2vcBltfLIjqlFbgZ2rsX/Rr30DIZ6pPwQtNc5idqGoAHJxz002EJkOXascPIE8TQ8i1C2t+TrXVpU44YatqsC3caXB0bfKFs22suoZlgNVwyCDb6SiniY+Njnx7NVX0UUltk53EFkGIDPalwxZX267M3b6rpVzP+g5JhjIoJfLXux6eN09a2zktb', '2025-05-29 21:33:58');
 
 -- ----------------------------
 -- Table structure for users
@@ -1423,7 +1526,7 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idAddress`(`idAddress`) USING BTREE,
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`idAddress`) REFERENCES `addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
@@ -1439,6 +1542,11 @@ INSERT INTO `users` VALUES (8, 'ngothithao@gmail.com', 'Ngô Thị Thảo', '090
 INSERT INTO `users` VALUES (9, 'phamvangiang@gmail.com', 'Phạm Văn Giang', '0919876543', 9, 'https://www.google.com/imgres?q=avatar%20fb&imgurl=https%3A%2F%2Fcellphones.com.vn%2Fsforum%2Fwp-content%2Fuploads%2F2023%2F10%2Favatar-trang-4.jpg&imgrefurl=https%3A%2F%2Fcellphones.com.vn%2Fsforum%2Favatar-trang&docid=l8Ud2gDyur0xUM&tbnid=9ELtMP6ldyeR8M');
 INSERT INTO `users` VALUES (10, 'tranthuthuy@gmail.com', 'Trần Thu Thủy', '0921098765', 10, 'https://www.google.com/imgres?q=avatar%20fb&imgurl=https%3A%2F%2Fcellphones.com.vn%2Fsforum%2Fwp-content%2Fuploads%2F2023%2F10%2Favatar-trang-4.jpg&imgrefurl=https%3A%2F%2Fcellphones.com.vn%2Fsforum%2Favatar-trang&docid=l8Ud2gDyur0xUM&tbnid=9ELtMP6ldyeR8M');
 INSERT INTO `users` VALUES (11, 'phanhoang03505@gmail.com', 'PHAN VĂN HOÀNG', '0335059497', 1, 'default.png');
+INSERT INTO `users` VALUES (12, 'testuser@example.com', 'Test User', '1234567890', 11, 'sample_image_url');
+INSERT INTO `users` VALUES (13, 'userkeytest@example.com', 'User Key Test', '0987123456', 12, 'sample_userkey_image.png');
+INSERT INTO `users` VALUES (14, 'testuser@example.com', 'Test User', '1234567890', 13, 'sample_image_url');
+INSERT INTO `users` VALUES (15, 'testuser@example.com', 'Test User', '1234567890', 14, 'sample_image_url');
+INSERT INTO `users` VALUES (16, 'testuser@example.com', 'Test User', '1234567890', 15, 'sample_image_url');
 
 -- ----------------------------
 -- Table structure for vouchers
