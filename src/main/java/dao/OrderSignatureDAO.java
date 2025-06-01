@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
 
 public class OrderSignatureDAO {
     Jdbi jdbi;
@@ -128,7 +129,11 @@ public class OrderSignatureDAO {
                             // Lấy ngày tạo - đảm bảo kiểu dữ liệu phù hợp
                             // Sử dụng getObject với LocalDateTime nếu cột là TIMESTAMP/DATETIME
                             // Hoặc rs.getTimestamp("create_at") nếu bạn dùng java.sql.Timestamp và java.sql.Timestamp
-                            signature.setCreate_at(rs.getObject("create_at", LocalDateTime.class));
+                            try {
+                                signature.setCreate_at(rs.getObject("create_at", LocalDateTime.class));
+                            } catch (SQLException e) {
+                                signature.setCreate_at(null);
+                            }
 
                             Order order = new Order();
                             order.setId(rs.getInt("id_order"));

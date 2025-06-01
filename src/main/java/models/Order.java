@@ -1,19 +1,29 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order implements Serializable {
-   private int id;
-   private User user;
-   private LocalDateTime timeOrdered;
-   private Voucher voucher;
-   private String status;
-   private double totalPrice;
-   private double lastPrice;
-   private List<OrderDetail> listOfDetailOrder = new ArrayList<OrderDetail>();
+    @Expose // Thêm annotation này
+    private int id;
+    // @Expose // Thêm annotation này nếu muốn serialize User object bên trong Order
+    private User user;
+    @Expose // Thêm annotation này
+    private LocalDateTime timeOrdered;
+    // @Expose // Thêm annotation này nếu muốn serialize Voucher object bên trong Order
+    private Voucher voucher;
+    @Expose // Thêm annotation này
+    private String status;
+    @Expose // Thêm annotation này
+    private double totalPrice;
+    @Expose // Thêm annotation này
+    private double lastPrice;
+    // @Expose // Thêm annotation này nếu muốn serialize danh sách OrderDetail bên trong Order
+    private List<OrderDetail> listOfDetailOrder = new ArrayList<OrderDetail>();
     public Order() {
 
     }
