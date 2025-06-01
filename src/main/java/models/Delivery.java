@@ -1,20 +1,34 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Delivery implements Serializable {
+    @Expose
     private int id;
+    @Expose
     private int idOrder;
+    @Expose
     private int idAddress;
+    @Expose
     private String fullName;
+    @Expose
     private String phoneNumber;
+    @Expose
     private double area;
+    @Expose
     private double deliveryFee;
+    @Expose
     private String note;
+    @Expose
     private String status;
+    @Expose
     private LocalDateTime scheduledDateTime;
+    @Expose
     private User user;
+    @Expose
     private Address address;
 
     public void setPhoneNumber(String phoneNumber) {

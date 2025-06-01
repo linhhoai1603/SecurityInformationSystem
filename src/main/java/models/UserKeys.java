@@ -1,12 +1,18 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class UserKeys implements Serializable {
+    @Expose
     private int id;
+    @Expose
     private User user;
+    @Expose
     private String publicKey;
+    @Expose
     private LocalDateTime create_at;
 
     public UserKeys(User user, String publicKey) {
