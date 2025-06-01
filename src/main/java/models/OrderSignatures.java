@@ -1,16 +1,25 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class OrderSignatures implements Serializable {
+    @Expose // Thêm @Expose
     private int id;
+    @Expose // Thêm @Expose để serialize đối tượng Order (với các trường @Expose bên trong nó)
     private Order order;
+    @Expose // Thêm @Expose để serialize đối tượng UserKeys (với các trường @Expose bên trong nó)
     private UserKeys userKeys;
+    @Expose // Thêm @Expose để serialize đối tượng Delivery (với các trường @Expose bên trong nó)
     private Delivery delivery;
+    @Expose // Thêm @Expose
     private String digitalSignature;
+    @Expose // Thêm @Expose
     private String verified;
-    private LocalDateTime create_at;
+    @Expose // Thêm @Expose (đã xử lý TypeAdapter cho LocalDateTime trong Servlet)
+    private LocalDateTime create_at;;
 
     public OrderSignatures(Order order, UserKeys userKeys, Delivery delivery, String digitalSignature, String verified) {
         this.order = order;
@@ -79,5 +88,18 @@ public class OrderSignatures implements Serializable {
 
     public void setCreate_at(LocalDateTime create_at) {
         this.create_at = create_at;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderSignatures{" +
+                "id=" + id +
+                ", order=" + order +
+                ", userKeys=" + userKeys +
+                ", delivery=" + delivery +
+                ", digitalSignature='" + digitalSignature + '\'' +
+                ", verified='" + verified + '\'' +
+                ", create_at=" + create_at +
+                '}';
     }
 }
