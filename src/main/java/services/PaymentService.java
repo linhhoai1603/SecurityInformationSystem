@@ -15,4 +15,7 @@ public class PaymentService {
         return dao.insertPayment(payment);
     }
 
+    public Payment getPaymentByIdOrder(int orderId) {
+        return dao.getPaymentByIdOrder(orderId);
+    }
 }

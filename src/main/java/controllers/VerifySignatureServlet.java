@@ -10,10 +10,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.*;
+import services.OrderService;
+import services.OrderSignatureService;
+import services.PaymentService;
 
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -26,23 +31,51 @@ public class VerifySignatureServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        String signatureIdParam = request.getParameter("signatureId");
-        if (signatureIdParam == null || signatureIdParam.isEmpty()) {
-            // Handle error: no signature ID provided
+        String orderId_string = request.getParameter("orderId");
+        if (orderId_string == null || orderId_string.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("{\"error\": \"Missing signatureId parameter\"}");
+            response.getWriter().write("{\"error\": \"Missing orderId parameter\"}");
             return;
         }
 
-        int signatureId;
+        int orderId;
         try {
-            signatureId = Integer.parseInt(signatureIdParam);
+            orderId = Integer.parseInt(orderId_string);
         } catch (NumberFormatException e) {
             // Handle error: invalid signature ID format
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("{\"error\": \"Invalid signatureId format\"}");
+            response.getWriter().write("{\"error\": \"Invalid orderId format\"}");
             return;
         }
+
+        OrderSignatureService orderSignatureService = new OrderSignatureService();
+        List<OrderSignatures> orderSignatures = orderSignatureService.getSignaturesByIdOrder(orderId);
+        OrderSignatures orderSignature = orderSignatures.getFirst();
+
+        int orderSignatureId = orderSignature.getId();
+
+        Map<String, Object> deliveryData = new HashMap<>();
+        Delivery delivery = orderSignature.getDelivery();
+
+
+        PaymentService paymentService = new PaymentService();
+        Payment payment = paymentService.getPaymentByIdOrder(orderId);
+
+
+        UserKeys userKey = orderSignature.getUserKeys();
+
+        User user = userKey.getUser();
+
+//        int id_user = user.getId();
+//        String fullname = user.getFullName();
+//        String email = user.getEmail();
+//        String phone = user.getNumberPhone();
+//
+//        Map<String, Object> userData = new HashMap<>();
+//        userData.put("id_user", id_user);
+//        userData.put("fullname", fullname);
+//        userData.put("email", email);
+//        userData.put("phone", phone);
 
 
 

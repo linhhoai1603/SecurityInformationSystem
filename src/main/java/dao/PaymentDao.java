@@ -7,6 +7,8 @@ import models.Payment;
 import models.UserKeys;
 import org.jdbi.v3.core.Jdbi;
 
+import java.time.LocalDateTime;
+
 public class PaymentDao {
 
     Jdbi jdbi;
@@ -29,4 +31,26 @@ public class PaymentDao {
         });
     }
 
+
+    public Payment getPaymentByIdOrder(int orderId) {
+        String sql = "SELECT * FROM payments WHERE idOrder :orderId";
+            return jdbi.withHandle(handle -> {
+                return handle.createQuery(sql)
+                        .bind("orderId", orderId)
+                        .map((rs, ctx) -> {
+                            Payment payment = new Payment();
+
+                            payment.setId(rs.getInt("id"));
+                            Order order = new Order();
+                            order.setId(rs.getInt("idOrder"));
+                            payment.setOrder(order);
+                            payment.setMethod(rs.getString("method"));
+                            payment.setStatus(rs.getString("status"));
+                            payment.setTimePayment(rs.getObject("time", LocalDateTime.class));
+                            payment.setPrice(rs.getDouble("price"));
+
+                            return payment;
+                        }).findOne().orElse(null);
+            });
+    }
 }

@@ -10,14 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/PaymentDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/PaymentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/security_information.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/security_information.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PaymentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PaymentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PaymentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -545,7 +541,7 @@
       <workItem from="1748439931675" duration="12079000" />
       <workItem from="1748494282560" duration="20923000" />
       <workItem from="1748758004078" duration="19932000" />
-      <workItem from="1748787830019" duration="8135000" />
+      <workItem from="1748787830019" duration="11049000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
