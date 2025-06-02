@@ -18,4 +18,8 @@ public class OrderSignatureService {
     public List<OrderSignatures> getSignaturesByIdOrder(int orderId) {
         return dao.getSignaturesByIdOrder(orderId);
     }
+
+    public String getPublicKeyById(int id) {
+        return dao.getPublicKeyById(id);
+    }
 }

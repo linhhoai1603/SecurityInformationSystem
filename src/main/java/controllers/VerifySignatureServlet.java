@@ -56,6 +56,8 @@ public class VerifySignatureServlet extends HttpServlet {
             return;
         }
         OrderSignatures orderSignature = orderSignatures.getLast();
+        String digtalSignature = orderSignature.getDigitalSignature();
+        String publicKey = orderSignatureService.getPublicKeyById(orderSignature.getId());
 
 
         OrderService orderService = new OrderService();
