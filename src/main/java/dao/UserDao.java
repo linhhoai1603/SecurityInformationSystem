@@ -1,9 +1,7 @@
 package dao;
 
 import connection.DBConnection;
-import models.AccountUser;
-import models.Address;
-import models.User;
+import models.*;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 
@@ -279,6 +277,61 @@ public class UserDao {
                         })
                         .list()
         );
+    }
+
+//    public Style getStyleByID(int idStyle){
+//        String query = "SELECT s.id, s.name, s.image, s.quantity AS styleQuantity, p.id AS idProduct, p.name AS nameProduct, pr.lastPrice, p.idPrice, c.id AS idCategory, p.quantity " +
+//                "FROM styles s " +
+//                "JOIN products p ON s.idProduct = p.id " +
+//                "JOIN prices pr ON p.idPrice = pr.id " +
+//                "JOIN categories c ON p.idCategory = c.id " +
+//                "WHERE s.id = :idStyle";
+//        return jdbi.withHandle(handle -> {
+//            return handle.createQuery(query)
+//                    .bind("idStyle", idStyle)
+//                    .map((rs, ctx) ->{
+//                        Style style = new Style();
+//                        style.setId(rs.getInt("id"));
+//                        style.setName(rs.getString("name"));
+//                        style.setImage(rs.getString("image"));
+//                        style.setQuantity(rs.getInt("styleQuantity"));
+//                        Product product = new Product();
+//                        product.setId(rs.getInt("idProduct"));
+//                        product.setName(rs.getString("nameProduct"));
+//                        product.setQuantity(rs.getInt("quantity"));
+//                        Price price = new Price();
+//                        price.setId(rs.getInt("idPrice"));
+//                        price.setLastPrice(rs.getDouble("lastPrice"));
+//                        Category category = new Category();
+//                        category.setId(rs.getInt("idCategory"));
+//                        product.setCategory(category);
+//                        product.setPrice(price);
+//                        style.setProduct(product);
+//                        return style;
+//                    }).list().getFirst();
+//        });
+//    }
+
+    public User getUserById(int idUser) {
+        String sql = "SELECT * FROM users WHERE id = :idUser";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind("idUser", idUser)
+                    .map((rs, ctx) ->{
+                        User user = new User();
+
+                        user.setId(rs.getInt("id"));
+                        user.setEmail(rs.getString("email"));
+                        user.setFullName(rs.getString("fullName"));
+                        user.setNumberPhone(rs.getString("phoneNumber"));
+                        Address address = new Address();
+                        address.setId(rs.getInt("idAddress"));
+                        user.setAddress(address);
+                        user.setImage(rs.getString("image"));
+
+                        return user;
+                    }).findOne().orElse(null);
+        });
     }
 }
 

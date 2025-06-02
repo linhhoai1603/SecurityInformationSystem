@@ -51,4 +51,13 @@ public class VoucherService {
     public boolean deleteVoucher(int id) {
         return voucherDao.deleteVoucher(id);
     }
+
+    public Voucher getVoucherByOrderId(int orderId) {
+        return voucherDao.getVoucherByOrderId(orderId);
+    }
+
+    public static void main(String[] args) {
+        VoucherService voucherService = new VoucherService();
+        System.out.println(voucherService.getVoucherByOrderId(58));
+    }
 }

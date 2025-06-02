@@ -115,4 +115,20 @@ public class VoucherDao {
     }
 
 
+    public Voucher getVoucherByOrderId(int orderId) {
+        String sql = "SELECT v.* FROM vouchers v JOIN orders o ON v.idVoucher = o.idVoucher\n" +
+                "WHERE o.id = ?";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, orderId)
+                    .mapToBean(Voucher.class)
+                    .findOne()
+                    .orElse(null);
+        });
+    }
+
+    public static void main(String[] args) {
+        VoucherDao dao = new VoucherDao();
+        System.out.println(dao.getVoucherByOrderId(59));
+    }
 }

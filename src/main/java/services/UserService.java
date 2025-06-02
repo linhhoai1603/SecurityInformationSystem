@@ -56,5 +56,8 @@ public class UserService {
     }
 
 
+    public User getUserById(int idUser) {
+        return userDao.getUserById(idUser);
+    }
 }
 

@@ -33,7 +33,7 @@ public class PaymentDao {
 
 
     public Payment getPaymentByIdOrder(int orderId) {
-        String sql = "SELECT * FROM payments WHERE idOrder :orderId";
+        String sql = "SELECT * FROM payments WHERE idOrder =:orderId";
             return jdbi.withHandle(handle -> {
                 return handle.createQuery(sql)
                         .bind("orderId", orderId)
@@ -52,5 +52,11 @@ public class PaymentDao {
                             return payment;
                         }).findOne().orElse(null);
             });
+    }
+
+    public static void main(String[] args) {
+        PaymentDao paymentDao = new PaymentDao();
+        Payment payment = paymentDao.getPaymentByIdOrder(63);
+        System.out.println(payment.toString());
     }
 }

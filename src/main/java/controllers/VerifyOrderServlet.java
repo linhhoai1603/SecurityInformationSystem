@@ -10,7 +10,7 @@ import models.*;
 import services.AddressService;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import java.nio.charset.StandardCharsets;
@@ -54,7 +54,7 @@ public class VerifyOrderServlet extends HttpServlet {
         String email = user.getEmail();
         String phone = user.getNumberPhone();
 
-        Map<String, Object> userData = new HashMap<>();
+        Map<String, Object> userData = new LinkedHashMap<>();
         userData.put("id_user", id_user);
         userData.put("fullname", fullname);
         userData.put("email", email);
@@ -66,9 +66,9 @@ public class VerifyOrderServlet extends HttpServlet {
         if(cart == null || cart.getItems().isEmpty()) {
             throw new IllegalStateException("Giỏ hàng trống hoặc không tồn tại.");
         }
-        Map<String, Object> orderData = new HashMap<>();
+        Map<String, Object> orderData = new LinkedHashMap<>();
         for(CartItem item: cart.getItems().values()) {
-            Map<String, Object> productData = new HashMap<>();
+            Map<String, Object> productData = new LinkedHashMap<>();
             Style style = item.getStyle();
 
             int style_id = style.getId();
@@ -95,7 +95,7 @@ public class VerifyOrderServlet extends HttpServlet {
         orderData.put("shippingFee", shippingFee);
 
         if (cart.getVoucher() != null) {
-            Map<String, Object> voucherInfo = new HashMap<>();
+            Map<String, Object> voucherInfo = new LinkedHashMap<>();
             voucherInfo.put("code", cart.getVoucher().getCode());
             voucherInfo.put("discountAmount", cart.getVoucher().getDiscountAmount());
 
@@ -106,12 +106,12 @@ public class VerifyOrderServlet extends HttpServlet {
         orderData.put("lastPrice", lastPrice);
 
 //        payment method
-        Map<String, Object> paymentData = new HashMap<>();
+        Map<String, Object> paymentData = new LinkedHashMap<>();
         String paymentMethod = request.getParameter("payment");
         paymentData.put("paymentMethod", paymentMethod);
 
 //        delivery infor
-        Map<String, Object> deliveryData = new HashMap<>();
+        Map<String, Object> deliveryData = new LinkedHashMap<>();
         String otherAddress = request.getParameter("otherAddress");
         if(otherAddress != null) {
             deliveryData.put("address_id", addressService.getLastId() + 1);
@@ -147,7 +147,7 @@ public class VerifyOrderServlet extends HttpServlet {
             deliveryData.put("note", note);
         }
 
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> data = new LinkedHashMap<>();
         data.put("user", userData);
         data.put("order",orderData);
         data.put("payment",paymentData);

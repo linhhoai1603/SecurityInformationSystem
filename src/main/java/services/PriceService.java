@@ -12,4 +12,8 @@ public class PriceService {
     public int addPrice(Price priceObj) {
         return priceDAO.addPrice(priceObj);
     }
+
+    public Price getPriceById(int idPrice) {
+        return priceDAO.getPriceById(idPrice);
+    }
 }

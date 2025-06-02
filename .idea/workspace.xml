@@ -11,9 +11,30 @@
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ProductsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ProductsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifyOrderServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DeliveryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DeliveryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/PaymentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PaymentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PriceDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PriceDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/VoucherDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/VoucherDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/OrderSignatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/OrderSignatures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/PriceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PriceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/VoucherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/VoucherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/ordered.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ordered.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/controllers/OrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/controllers/OrderServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/dao/DeliveryDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/dao/DeliveryDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Delivery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Delivery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Payment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/models/Payment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/services/DeliveryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/WEB-INF/classes/services/DeliveryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/ordered.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT/ordered.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +114,7 @@
     "Application.OrderDetailServlet.executor": "Run",
     "Application.OrderSignatureDAO.executor": "Run",
     "Application.PaymentDao.executor": "Run",
+    "Application.PriceDAO.executor": "Run",
     "Application.ProductDao.executor": "Run",
     "Application.ProductService.executor": "Run",
     "Application.StyleDao.executor": "Run",
@@ -100,6 +122,7 @@
     "Application.UserDao.executor": "Run",
     "Application.UserInForServies.executor": "Run",
     "Application.UserKeyDAO.executor": "Run",
+    "Application.VoucherDao.executor": "Run",
     "Application.VoucherService.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -154,32 +177,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.28">
-    <configuration name="DeliveryDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.DeliveryDAO" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HashUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="services.application.HashUtil" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="services.application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="OrderSignatureDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.OrderSignatureDAO" />
       <module name="ProjectWeb" />
@@ -206,12 +203,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserKeyDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.UserKeyDAO" />
+    <configuration name="PriceDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.PriceDAO" />
       <module name="ProjectWeb" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoucherDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.VoucherDao" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoucherService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="services.VoucherService" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -363,20 +386,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.PriceDAO" />
+      <item itemvalue="Application.VoucherDao" />
+      <item itemvalue="Application.VoucherService" />
       <item itemvalue="Application.PaymentDao" />
-      <item itemvalue="Application.DeliveryDAO" />
       <item itemvalue="Application.OrderSignatureDAO" />
-      <item itemvalue="Application.UserKeyDAO" />
-      <item itemvalue="Application.HashUtil" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.28" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.VoucherService" />
+        <item itemvalue="Application.VoucherDao" />
+        <item itemvalue="Application.PriceDAO" />
         <item itemvalue="Application.PaymentDao" />
         <item itemvalue="Application.OrderSignatureDAO" />
-        <item itemvalue="Application.UserKeyDAO" />
-        <item itemvalue="Application.DeliveryDAO" />
-        <item itemvalue="Application.HashUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -541,7 +564,8 @@
       <workItem from="1748439931675" duration="12079000" />
       <workItem from="1748494282560" duration="20923000" />
       <workItem from="1748758004078" duration="19932000" />
-      <workItem from="1748787830019" duration="11049000" />
+      <workItem from="1748787830019" duration="11292000" />
+      <workItem from="1748833897993" duration="24342000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
