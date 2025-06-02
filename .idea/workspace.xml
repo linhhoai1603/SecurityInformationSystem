@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/RSA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProjectWeb-1.0-SNAPSHOT.war" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +96,7 @@
     "Application.PriceDAO.executor": "Run",
     "Application.ProductDao.executor": "Run",
     "Application.ProductService.executor": "Run",
+    "Application.RSA.executor": "Run",
     "Application.StyleDao.executor": "Run",
     "Application.StyleService.executor": "Run",
     "Application.UserDao.executor": "Run",
@@ -170,8 +170,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.PaymentDao" />
+    <configuration name="PriceDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.PriceDAO" />
       <module name="ProjectWeb" />
       <extension name="coverage">
         <pattern>
@@ -183,12 +183,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PriceDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.PriceDAO" />
+    <configuration name="RSA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="models.RSA" />
       <module name="ProjectWeb" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dao.*" />
+          <option name="PATTERN" value="models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -367,19 +367,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.PriceDAO" />
+      <item itemvalue="Application.RSA" />
       <item itemvalue="Application.VoucherDao" />
       <item itemvalue="Application.VoucherService" />
-      <item itemvalue="Application.PaymentDao" />
       <item itemvalue="Application.OrderSignatureDAO" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.28" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RSA" />
         <item itemvalue="Application.OrderSignatureDAO" />
         <item itemvalue="Application.VoucherService" />
         <item itemvalue="Application.VoucherDao" />
         <item itemvalue="Application.PriceDAO" />
-        <item itemvalue="Application.PaymentDao" />
       </list>
     </recent_temporary>
   </component>
@@ -545,7 +545,7 @@
       <workItem from="1748494282560" duration="20923000" />
       <workItem from="1748758004078" duration="19932000" />
       <workItem from="1748787830019" duration="11292000" />
-      <workItem from="1748833897993" duration="26292000" />
+      <workItem from="1748833897993" duration="34158000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
