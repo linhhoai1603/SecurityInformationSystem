@@ -15,6 +15,9 @@ public class ProductService {
     public ProductService() {
         productDao = new ProductDao();
     }
+
+
+
     public int getNumberOfPage(int idCategory, int pageSize){
         return productDao.getNumberPageProductByCategory(idCategory, pageSize);
     }
@@ -71,6 +74,11 @@ public class ProductService {
         }
         return products;
     }
+
+    public Product getProductById(int idProduct) {
+        return productDao.getProductById(idProduct);
+    }
+
     public static void main(String[] args) {
         ProductService productService = new ProductService();
 //        List<Product> products = productService.getProductByCategory("Vải may mặc",12,4);

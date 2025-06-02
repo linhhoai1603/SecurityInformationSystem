@@ -33,4 +33,8 @@ public class DeliveryService {
         }
         return deliveries;
     }
+
+    public Delivery getDeliveryById(int idDelivery) {
+        return dao.getDeliveryById(idDelivery);
+    }
 }

@@ -84,4 +84,16 @@ public class Payment implements Serializable {
         this.timePayment = timePayment;
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", order=" + order +
+                ", method='" + method + '\'' +
+                ", status='" + status + '\'' +
+                ", timePayment=" + timePayment +
+                ", price=" + price +
+                '}';
+    }
 }

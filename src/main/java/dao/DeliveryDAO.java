@@ -4,6 +4,7 @@ import connection.DBConnection;
 import models.Address;
 import models.Delivery;
 import models.Order;
+import models.User;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -141,5 +142,53 @@ public class DeliveryDAO {
             e.printStackTrace();
             System.err.println("Error inserting delivery: " + e.getMessage());
         }
+    }
+
+//    public User getUserById(int idUser) {
+//        String sql = "SELECT * FROM users WHERE id = :idUser";
+//        return jdbi.withHandle(handle -> {
+//            return handle.createQuery(sql)
+//                    .bind("idUser", idUser)
+//                    .map((rs, ctx) ->{
+//                        User user = new User();
+//
+//                        user.setId(rs.getInt("id"));
+//                        user.setEmail(rs.getString("email"));
+//                        user.setFullName(rs.getString("fullName"));
+//                        user.setNumberPhone(rs.getString("phoneNumber"));
+//                        Address address = new Address();
+//                        address.setId(rs.getInt("idAddress"));
+//                        user.setAddress(address);
+//                        user.setImage(rs.getString("image"));
+//
+//                        return user;
+//                    }).findOne().orElse(null);
+//        });
+//    }
+
+    public Delivery getDeliveryById(int idDelivery) {
+        String sql = "SELECT * FROM deliveries WHERE id = :idDelivery";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind("idDelivery", idDelivery)
+                    .map((rs, ctx) ->{
+                       Delivery delivery = new Delivery();
+
+                       delivery.setId(rs.getInt("id"));
+                       delivery.setIdOrder(rs.getInt("idOrder"));
+                       Address address = new Address();
+                       address.setId(rs.getInt("idAddress"));
+                       delivery.setAddress(address);
+                       delivery.setFullName(rs.getString("fullName"));
+                       delivery.setNumberPhone(rs.getString("phoneNumber"));
+                       delivery.setArea(rs.getDouble("area"));
+                       delivery.setDeliveryFee(rs.getDouble("deliveryFee"));
+                       delivery.setNote(rs.getString("note"));
+                       delivery.setStatus(rs.getString("status"));
+                       delivery.setScheduledDateTime(rs.getTimestamp("scheduledDateTime").toLocalDateTime());
+
+                       return delivery;
+                    }).findOne().orElse(null);
+        });
     }
 }

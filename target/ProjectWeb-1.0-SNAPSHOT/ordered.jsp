@@ -311,6 +311,61 @@
         }
       },
 
+      <%--handleVerifyClick: function(event) {--%>
+      <%--  var button = event.target;--%>
+      <%--  var orderId = button.getAttribute('data-order-id-to-verify');--%>
+
+      <%--  if (!orderId || button.disabled) {--%>
+      <%--    return;--%>
+      <%--  }--%>
+
+      <%--  button.disabled = true;--%>
+      <%--  var originalText = button.textContent;--%>
+      <%--  button.textContent = 'Đang xác thực...';--%>
+
+      <%--  var verificationResultDiv = this.verificationResultDiv;--%>
+      <%--  if (verificationResultDiv) verificationResultDiv.innerHTML = '<div class="alert alert-info">Đang xử lý xác thực...</div>';--%>
+
+      <%--  var url = '<%= request.getContextPath() %>/verifySignature?orderId=' + orderId;--%>
+
+      <%--  fetch(url, {--%>
+      <%--    method: 'POST',--%>
+      <%--    headers: {--%>
+      <%--      'Content-Type': 'application/x-www-form-urlencoded',--%>
+      <%--    },--%>
+      <%--    body: formData--%>
+      <%--  })--%>
+      <%--  .then(response => {--%>
+      <%--    // Kiểm tra mã trạng thái phản hồi trước khi xử lý JSON--%>
+      <%--    if (!response.ok) {--%>
+      <%--      // Nếu lỗi (ví dụ 405, 400, 500), ném lỗi để nhảy vào catch block--%>
+      <%--      throw new Error(`HTTP error! status: ${response.status}`);--%>
+      <%--    }--%>
+      <%--    return response.json(); // Xử lý phản hồi dưới dạng JSON--%>
+      <%--  })--%>
+      <%--  .then(result => {--%>
+      <%--    if (!verificationResultDiv) return;--%>
+      <%--    // Giả sử phản hồi JSON có cấu trúc { success: boolean, message?: string, orderDataJson: string, orderDataHash: string }--%>
+      <%--    // Cập nhật cách xử lý kết quả dựa trên cấu trúc thực tế bạn muốn hiển thị--%>
+      <%--    var alertClass = result.success ? 'alert-success' : 'alert-danger';--%>
+      <%--    var message = result.message || (result.success ? 'Xác thực thành công' : 'Xác thực thất bại');--%>
+      <%--    // Hiển thị orderDataJson và orderDataHash nếu cần--%>
+      <%--    let detailInfo = '';--%>
+      <%--    if (result.success) {--%>
+      <%--      detailInfo = `<p>Order Data JSON: ${result.orderDataJson}</p><p>Order Data Hash: ${result.orderDataHash}</p>`;--%>
+      <%--    }--%>
+      <%--    verificationResultDiv.innerHTML = `<div class="alert ${alertClass}">${message}${detailInfo}</div>`;--%>
+      <%--  })--%>
+      <%--  .catch(error => {--%>
+      <%--    console.error('Fetch error:', error); // Log lỗi chi tiết--%>
+      <%--    if (!verificationResultDiv) return;--%>
+      <%--    verificationResultDiv.innerHTML = `<div class="alert alert-danger">Lỗi xác thực: ${error.message || ''}</div>`;--%>
+      <%--  })--%>
+      <%--  .finally(() => {--%>
+      <%--    button.disabled = false;--%>
+      <%--    button.textContent = originalText;--%>
+      <%--  });--%>
+      <%--}--%>
       handleVerifyClick: function(event) {
         var button = event.target;
         var orderId = button.getAttribute('data-order-id-to-verify');
@@ -326,17 +381,50 @@
         var verificationResultDiv = this.verificationResultDiv;
         if (verificationResultDiv) verificationResultDiv.innerHTML = '<div class="alert alert-info">Đang xử lý xác thực...</div>';
 
-        var url = '<%= request.getContextPath() %>/verifySignature?orderId=' + orderId;
+        var url = '<%= request.getContextPath() %>/verifySignature';
 
-        fetch(url)
-                .then(response => response.json())
+        // Tạo FormData với orderId
+        var formData = new FormData();
+        formData.append('orderId', orderId);
+
+        fetch(url, {
+          method: 'POST',
+          body: formData  // Sử dụng FormData thay vì headers application/x-www-form-urlencoded
+        })
+                .then(response => {
+                  console.log('Response status:', response.status); // Debug log
+                  if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                  }
+                  return response.json();
+                })
                 .then(result => {
+                  console.log('Verification result:', result); // Debug log
                   if (!verificationResultDiv) return;
-                  var alertClass = result.success ? 'alert-success' : 'alert-danger';
-                  var message = result.message || (result.success ? 'Xác thực thành công' : 'Xác thực thất bại');
-                  verificationResultDiv.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
+
+                  // Xử lý kết quả từ servlet
+                  if (result.error) {
+                    verificationResultDiv.innerHTML = `<div class="alert alert-danger">Lỗi: ${result.error}</div>`;
+                  } else {
+                    // Hiển thị kết quả thành công
+                    var successHtml = '<div class="alert alert-success">';
+                    successHtml += '<h6>Xác thực thành công!</h6>';
+                    successHtml += '<details class="mt-2">';
+                    successHtml += '<summary>Xem chi tiết dữ liệu</summary>';
+                    successHtml += '<div class="mt-2">';
+                    successHtml += '<p><strong>Order Data Hash:</strong></p>';
+                    successHtml += '<code class="break-long-text">' + result.orderDataHash + '</code>';
+                    successHtml += '<p class="mt-2"><strong>Order Data JSON:</strong></p>';
+                    successHtml += '<pre class="bg-light p-2 border rounded" style="max-height: 300px; overflow-y: auto;">' +
+                            JSON.stringify(JSON.parse(result.orderDataJson), null, 2) + '</pre>';
+                    successHtml += '</div>';
+                    successHtml += '</details>';
+                    successHtml += '</div>';
+                    verificationResultDiv.innerHTML = successHtml;
+                  }
                 })
                 .catch(error => {
+                  console.error('Fetch error:', error);
                   if (!verificationResultDiv) return;
                   verificationResultDiv.innerHTML = `<div class="alert alert-danger">Lỗi xác thực: ${error.message}</div>`;
                 })

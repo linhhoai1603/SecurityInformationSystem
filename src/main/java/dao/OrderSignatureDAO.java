@@ -164,42 +164,63 @@ public class OrderSignatureDAO {
         });
     }
 
-    public static void main(String[] args) {
-        // Đặt Order ID bạn muốn test vào đây
-        int testOrderId = 59; // Hoặc bất kỳ ID đơn hàng nào tồn tại trong DB của bạn
+    public String getPublicKeyById(int id) {
+        String sql = "SELECT u.public_key FROM order_signatures os \n" +
+                "JOIN user_keys u ON os.key_id = u.id \n" +
+                "WHERE os.id = ?";
 
-        System.out.println("Testing getSignaturesByIdOrder for Order ID: " + testOrderId);
-
-        try {
-            // Tạo instance của DAO
-            OrderSignatureDAO dao = new OrderSignatureDAO();
-
-            // Gọi phương thức cần test
-            List<OrderSignatures> signatures = dao.getSignaturesByIdOrder(testOrderId);
-
-            // In kết quả
-            for(OrderSignatures signature : signatures){
-                if (signature != null) {
-                    System.out.println("Found Order Signature:");
-                    System.out.println("  ID: " + signature.getId());
-                    System.out.println("  Order ID: " + (signature.getOrder() != null ? signature.getOrder().getId() : "N/A"));
-                    System.out.println("  Public Key: " + (signature.getUserKeys() != null ? signature.getUserKeys().getPublicKey() : "N/A"));
-                    System.out.println("  Delivery FullName: " + (signature.getDelivery() != null ? signature.getDelivery().getFullName() : "N/A"));
-                    System.out.println("  Digital Signature (snippet): " + (signature.getDigitalSignature() != null ? signature.getDigitalSignature().substring(0, Math.min(signature.getDigitalSignature().length(), 50)) + "..." : "N/A")); // In một phần
-                    System.out.println("  Verified Status: " + signature.getVerified());
-                    System.out.println("  Create At: " + signature.getCreate_at());
-                    // Thêm các thông tin khác bạn muốn in
-                } else {
-                    System.out.println("No Order Signature found for Order ID: " + testOrderId);
-                }
-            }
-
-        } catch (Exception e) {
-            // Bắt các ngoại lệ có thể xảy ra (ví dụ: lỗi kết nối DB)
-            System.err.println("An error occurred during testing:");
-            e.printStackTrace();
-        }
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse(null);
+        });
     }
+
+    public static void main(String[] args) {
+        OrderSignatureDAO dao = new OrderSignatureDAO();
+        System.out.println(dao.getPublicKeyById(10));
+    }
+
+//    public static void main(String[] args) {
+//        // Đặt Order ID bạn muốn test vào đây
+//        int testOrderId = 59; // Hoặc bất kỳ ID đơn hàng nào tồn tại trong DB của bạn
+//
+//        System.out.println("Testing getSignaturesByIdOrder for Order ID: " + testOrderId);
+//
+//        try {
+//            // Tạo instance của DAO
+//            OrderSignatureDAO dao = new OrderSignatureDAO();
+//
+//            // Gọi phương thức cần test
+//            List<OrderSignatures> signatures = dao.getSignaturesByIdOrder(testOrderId);
+//
+//            // In kết quả
+//            for(OrderSignatures signature : signatures){
+//                if (signature != null) {
+//                    System.out.println("Found Order Signature:");
+//                    System.out.println("  ID: " + signature.getId());
+//                    System.out.println("  Order ID: " + (signature.getOrder() != null ? signature.getOrder().getId() : "N/A"));
+//                    System.out.println("  Public Key: " + (signature.getUserKeys() != null ? signature.getUserKeys().getPublicKey() : "N/A"));
+//                    System.out.println("  Delivery FullName: " + (signature.getDelivery() != null ? signature.getDelivery().getFullName() : "N/A"));
+//                    System.out.println("  Digital Signature (snippet): " + (signature.getDigitalSignature() != null ? signature.getDigitalSignature().substring(0, Math.min(signature.getDigitalSignature().length(), 50)) + "..." : "N/A")); // In một phần
+//                    System.out.println("  Verified Status: " + signature.getVerified());
+//                    System.out.println("  Create At: " + signature.getCreate_at());
+//                    // Thêm các thông tin khác bạn muốn in
+//                } else {
+//                    System.out.println("No Order Signature found for Order ID: " + testOrderId);
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            // Bắt các ngoại lệ có thể xảy ra (ví dụ: lỗi kết nối DB)
+//            System.err.println("An error occurred during testing:");
+//            e.printStackTrace();
+//        }
+//    }
+
+
 
 //    public static void main(String[] args) {
 //        // Lấy thời gian hiện tại
