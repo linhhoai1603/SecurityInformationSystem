@@ -24,26 +24,31 @@ public class DS {
     }
 
     public PrivateKey loadPrivateKey(String path) throws Exception {
+        byte[] base64Bytes;
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path))) {
-            byte[] key = bis.readAllBytes();
-            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return keyFactory.generatePrivate(keySpec);
+            base64Bytes = bis.readAllBytes();
         }
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(base64Bytes));
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        return keyFactory.generatePrivate(keySpec);
     }
 
     public PublicKey loadPublicKey(String path) throws Exception {
+        byte[] base64Bytes;
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(path))) {
-            byte[] key = bis.readAllBytes();
-            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return keyFactory.generatePublic(keySpec);
+            base64Bytes = bis.readAllBytes();
         }
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(base64Bytes));
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        return keyFactory.generatePublic(keySpec);
     }
 
     private void saveKeyToFile(String path, byte[] keyBytes) throws Exception {
+        String base64 = Base64.getEncoder().encodeToString(keyBytes);
+        byte[] base64Bytes = base64.getBytes(StandardCharsets.UTF_8);
+
         try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path))) {
-            bos.write(keyBytes);
+            bos.write(base64Bytes);
         }
     }
 

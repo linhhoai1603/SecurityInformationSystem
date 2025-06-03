@@ -54,12 +54,12 @@ public class TopPanel extends JPanel {
         JPanel panel_bottom_1 = new JPanel(new GridLayout(2, 1));
         privateKey = new JTextField(20);
         privateKey.setBorder(BorderFactory.createTitledBorder("Private Key"));
-        privateKey.setBackground(new Color(238, 238, 238));
-        privateKey.setEditable(false);
+        privateKey.setBackground(Color.WHITE);
+        privateKey.setEditable(true);
         publicKey = new JTextField(20);
         publicKey.setBorder(BorderFactory.createTitledBorder("Public Key"));
-        publicKey.setBackground(new Color(238, 238, 238));
-        publicKey.setEditable(false);
+        publicKey.setBackground(Color.WHITE);
+        publicKey.setEditable(true);
         panel_bottom_1.add(privateKey);
         panel_bottom_1.add(publicKey);
         panel_bottom.add(panel_bottom_1);

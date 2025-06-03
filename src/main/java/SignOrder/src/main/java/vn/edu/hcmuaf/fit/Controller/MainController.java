@@ -14,6 +14,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 
 public class MainController {
@@ -43,6 +44,11 @@ public class MainController {
             this.sign_algo = (String) view.getTopPanel().sign_algo_cb.getSelectedItem();
             System.out.println(sign_algo);
         });
+        //xoa cac gia tri ben trong priKey & pubKey neu chuyen tu tab 1 sang 2 va nguoc lai
+        view.getTopPanel().panel_tabbed.addChangeListener(e -> {
+            view.getTopPanel().privateKey.setText("");
+            view.getTopPanel().publicKey.setText("");
+        });
         //top panel - add action btn
         view.getTopPanel().genKey_btn.addActionListener(e -> {
             try {
@@ -62,8 +68,12 @@ public class MainController {
                     this.privateKey = model.loadPrivateKey(path);
                     model.setPrivateKey(this.privateKey);
                     view.getTopPanel().privateKey.setText(Base64.getEncoder().encodeToString(this.privateKey.getEncoded()));
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, "File không đúng định dạng Base64.", "Lỗi tải Private Key", JOptionPane.ERROR_MESSAGE);
+                } catch (InvalidKeySpecException ex) {
+                    JOptionPane.showMessageDialog(view, "Định dạng khóa không hợp lệ (có thể là khóa public hoặc bị hỏng).", "Lỗi tải Private Key", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(view, "Lỗi không xác định khi tải Private Key: " + ex.getMessage(), "Lỗi tải Private Key", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -74,8 +84,12 @@ public class MainController {
                     this.publicKey = model.loadPublicKey(path);
                     model.setPublicKey(this.publicKey);
                     view.getTopPanel().publicKey.setText(Base64.getEncoder().encodeToString(this.publicKey.getEncoded()));
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(view, "File không đúng định dạng Base64.", "Lỗi tải Public Key", JOptionPane.ERROR_MESSAGE);
+                } catch (InvalidKeySpecException ex) {
+                    JOptionPane.showMessageDialog(view, "Định dạng khóa không hợp lệ (có thể là khóa private hoặc bị hỏng).", "Lỗi tải Public Key", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    JOptionPane.showMessageDialog(view, "Lỗi không xác định khi tải Public Key: " + ex.getMessage(), "Lỗi tải Public Key", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
