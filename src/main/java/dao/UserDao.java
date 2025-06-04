@@ -329,6 +329,11 @@ public class UserDao {
                         user.setAddress(address);
                         user.setImage(rs.getString("image"));
 
+                        UserKeyDAO userKeyDao = new UserKeyDAO();
+                        int idUserKey = rs.getInt("idUserKey");
+                        UserKeys userKeys = userKeyDao.getUserKey(idUserKey);
+                        user.setUserkeys(userKeys);
+
                         return user;
                     }).findOne().orElse(null);
         });

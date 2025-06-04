@@ -11,9 +11,22 @@ public class User implements Serializable {
     private String image;
     private int orderCount;
     private double totalSpent;
+    private UserKeys userkeys;
 
     public User() {
 
+    }
+
+    public User(int id, String email, String fullName, String numberPhone, Address address, String image, int orderCount, double totalSpent, UserKeys userkeys) {
+        this.id = id;
+        this.email = email;
+        this.fullName = fullName;
+        this.numberPhone = numberPhone;
+        this.address = address;
+        this.image = image;
+        this.orderCount = orderCount;
+        this.totalSpent = totalSpent;
+        this.userkeys = userkeys;
     }
 
     public int getId() {
@@ -95,8 +108,16 @@ public class User implements Serializable {
                 ", fullName='" + fullName + '\'' +
                 ", numberPhone='" + numberPhone + '\'' +
                 ", address=" + (address != null ? address.toString() : "null") +
+                ", userKey=" + userkeys.getPublicKey() +
                 '}';
     }
 
 
+    public UserKeys getUserkeys() {
+        return userkeys;
+    }
+
+    public void setUserkeys(UserKeys userkeys) {
+        this.userkeys = userkeys;
+    }
 }

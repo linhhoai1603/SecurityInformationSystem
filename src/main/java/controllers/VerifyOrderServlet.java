@@ -35,7 +35,8 @@ public class VerifyOrderServlet extends HttpServlet {
         String publicKey = null;
         try {
             services.UserKeyService userKeyService = new services.UserKeyService();
-            models.UserKeys userKey = userKeyService.getCurrentUserKey(user.getId());
+//            models.UserKeys userKey = userKeyService.getCurrentUserKey(user.getId());
+            models.UserKeys userKey = user.getUserkeys();
             if (userKey != null) {
                 publicKey = userKey.getPublicKey();
             } else {

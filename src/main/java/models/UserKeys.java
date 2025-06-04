@@ -9,14 +9,11 @@ public class UserKeys implements Serializable {
     @Expose
     private int id;
     @Expose
-    private User user;
-    @Expose
     private String publicKey;
     @Expose
     private LocalDateTime create_at;
 
-    public UserKeys(User user, String publicKey) {
-        this.user = user;
+    public UserKeys(String publicKey) {
         this.publicKey = publicKey;
         this.create_at = LocalDateTime.now();
     }
@@ -31,14 +28,6 @@ public class UserKeys implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getPublicKey() {
@@ -61,7 +50,6 @@ public class UserKeys implements Serializable {
     public String toString() {
         return "UserKeys{" +
                 "id=" + id +
-                ", user=" + user +
                 ", publicKey='" + publicKey + '\'' +
                 ", create_at=" + create_at +
                 '}';

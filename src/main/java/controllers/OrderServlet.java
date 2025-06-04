@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.*;
 
-import dao.UserKeyDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,7 +9,6 @@ import models.*;
 import services.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 @WebServlet(name = "OrderServlet", value = "/order")
@@ -164,7 +162,8 @@ public class OrderServlet extends HttpServlet {
 
         UserKeys userKey = new UserKeys();
         try {
-            userKey = userKeyService.getCurrentUserKey(user.getId());
+//            userKey = userKeyService.getCurrentUserKey(user.getId());
+            userKey = user.getUserkeys();
             System.out.println("UserKey retrieved: " + (userKey != null ? userKey.toString() : "null"));
         } catch (Exception e) {
             System.out.println("Error calling getCurrentUserKey: " + e.getMessage());
