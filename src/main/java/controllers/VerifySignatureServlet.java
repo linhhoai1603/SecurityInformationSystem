@@ -56,8 +56,6 @@ public class VerifySignatureServlet extends HttpServlet {
             return;
         }
         OrderSignatures orderSignature = orderSignatures.getLast();
-        String digtalSignature = orderSignature.getDigitalSignature();
-        String publicKey = orderSignatureService.getPublicKeyById(orderSignature.getId());
 
 
         OrderService orderService = new OrderService();
@@ -156,8 +154,7 @@ public class VerifySignatureServlet extends HttpServlet {
         // Convert aggregated data to JSON string
         ObjectMapper objectMapper = new ObjectMapper();
         String orderDataJson = objectMapper.writeValueAsString(data);
-
-        System.out.println(orderDataJson);
+        Map<String, Object> finalResponse = new LinkedHashMap<>();
 
         // Calculate hash
         String jsonHash = null;
@@ -171,14 +168,73 @@ public class VerifySignatureServlet extends HttpServlet {
             response.getWriter().write("{\"error\": \"Failed to calculate hash\"}");
             return;
         }
+        System.out.println("jsonHash: " + jsonHash);
 
-        // Prepare final response JSON
-        Map<String, String> finalResponse = new LinkedHashMap<>();
-        finalResponse.put("orderDataJson", orderDataJson);
-        finalResponse.put("orderDataHash", jsonHash);
+//        Nơi để kiểm tra thông tin jsonHash ==?? (digtalSignature + publicKey)
+        String digtalSignature = orderSignature.getDigitalSignature();
+        String publicKey = orderSignatureService.getPublicKeyById(orderSignature.getId());
+        boolean isSignatureValid = false;
+        try {
+            isSignatureValid = RSA.verifyWithPublicKey(publicKey, digtalSignature, jsonHash);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if (isSignatureValid) {
+            // Signature is valid - return success response
+            finalResponse.put("orderDataJson", orderDataJson);
+            finalResponse.put("orderDataHash", jsonHash);
+
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            // Signature is invalid - return error response
+            finalResponse.put("error", "Chữ ký điện tử không hợp lệ. Dữ liệu có thể đã bị thay đổi.");
+
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
 
         // Write the final JSON response
         response.getWriter().write(objectMapper.writeValueAsString(finalResponse));
+
+
+        // <<TEST>>
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String orderDataJson = objectMapper.writeValueAsString(data);
+//
+//        System.out.println(orderDataJson);
+//
+//        // Calculate hash
+//        String jsonHash = null;
+//        try {
+//            jsonHash = calculateSha256(orderDataJson);
+//        } catch (NoSuchAlgorithmException e) {
+//            System.err.println("Error calculating hash: " + e.getMessage());
+//            e.printStackTrace();
+//            // Handle error appropriately, maybe return an error response
+//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            response.getWriter().write("{\"error\": \"Failed to calculate hash\"}");
+//            return;
+//        }
+//
+////        Nơi để kiểm tra thông tin jsonHash ==?? (digtalSignature + publicKey)
+//
+//        String digtalSignature = orderSignature.getDigitalSignature();
+//        System.out.println("digtalSignature: " + digtalSignature);
+//        String publicKey = orderSignatureService.getPublicKeyById(orderSignature.getId());
+//        try {
+//            boolean isSignatureValid = RSA.verifyWithPublicKey(publicKey, digtalSignature, jsonHash);
+//            System.out.println(isSignatureValid);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        // Prepare final response JSON
+//        Map finalResponse = new LinkedHashMap<>();
+//        finalResponse.put("orderDataJson", orderDataJson);
+//        finalResponse.put("orderDataHash", jsonHash);
+//
+//        // Write the final JSON response
+//        response.getWriter().write(objectMapper.writeValueAsString(finalResponse));
     }
 
     private String calculateSha256(String text) throws NoSuchAlgorithmException {

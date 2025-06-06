@@ -381,15 +381,13 @@
         var verificationResultDiv = this.verificationResultDiv;
         if (verificationResultDiv) verificationResultDiv.innerHTML = '<div class="alert alert-info">Đang xử lý xác thực...</div>';
 
-        var url = '<%= request.getContextPath() %>/verifySignature';
-
-        // Tạo FormData với orderId
-        var formData = new FormData();
-        formData.append('orderId', orderId);
-
+        var url = '<%= request.getContextPath() %>/verifySignature?orderId=' + orderId;
         fetch(url, {
           method: 'POST',
-          body: formData  // Sử dụng FormData thay vì headers application/x-www-form-urlencoded
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+          // Không cần body vì orderId đã nằm trong query string
         })
                 .then(response => {
                   console.log('Response status:', response.status); // Debug log
