@@ -11,6 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Sign.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -590,7 +591,7 @@
       <workItem from="1748964760831" duration="2915000" />
       <workItem from="1749020549188" duration="21000" />
       <workItem from="1749474436837" duration="2403000" />
-      <workItem from="1749565834735" duration="418000" />
+      <workItem from="1749565834735" duration="1821000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
