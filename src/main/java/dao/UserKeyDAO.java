@@ -3,11 +3,13 @@ package dao;
 import connection.DBConnection;
 import models.*;
 import org.jdbi.v3.core.Jdbi;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserKeyDAO {
     Jdbi jdbi;
+
     public UserKeyDAO() {
         this.jdbi = DBConnection.getConnetion();
     }
@@ -23,6 +25,23 @@ public class UserKeyDAO {
                 .findOnly());
     }
 
+    public boolean insertUserKeys(int userId, String keyValue) {
+        String sql = "INSERT INTO user_keys (user_id, public_key, created_at) VALUES (:idUser, :keyValue, NOW())";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("idUser", userId)
+                        .bind("keyValue", keyValue)
+                        .execute() > 0);
+    }
+
+    public boolean updateUserKeys(int userId, String keyValue) {
+        String sql = "UPDATE user_keys SET public_key = :keyValue, created_at = NOW() WHERE user_id = :idUser";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("idUser", userId)
+                        .bind("keyValue", keyValue)
+                        .execute() > 0);
+    }
 
 //    public List<Order> getOrdersByUserId(int userId) {
 //        String query = "SELECT * FROM orders WHERE idUser = :idUser ORDER BY timeOrder DESC";

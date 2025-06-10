@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.AccountUser;
 import models.User;
+import models.UserKeys;
 import services.AuthenServies;
+import services.UserKeyService;
 import services.application.HashUtil;
 
 import java.io.IOException;
@@ -45,9 +47,14 @@ public class LoginController extends HttpServlet {
             }
             // Lưu thông tin người dùng vào session
             User user = acc.getUser();
+
+            UserKeyService userKeyService = new UserKeyService();
+            UserKeys userKeys = userKeyService.getCurrentUserKey(user.getId());
+
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("account", acc);
+            session.setAttribute("userKeys", userKeys);
             response.sendRedirect(request.getContextPath() + "/home");
         } else {
             // Nếu đăng nhập sai, giữ lại username và thông báo lỗi
