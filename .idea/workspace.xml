@@ -10,24 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/UpdatePublicKeyServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/enter-public-key.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/tool/SignOrder.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/Controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/Model/DS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/Model/DS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/Model/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/Model/Value.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/View/BottomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/View/BottomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/View/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/View/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/View/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/View/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignOrder/src/main/java/vn/edu/hcmuaf/fit/View/TopPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tool/View/TopPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PersonalServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/PersonalServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserKeyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserKeyDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/UserKeyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/UserKeyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/VerifySignatureServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Sign.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +95,7 @@
     "Application.PriceDAO.executor": "Run",
     "Application.ProductDao.executor": "Run",
     "Application.ProductService.executor": "Run",
+    "Application.Sign.executor": "Run",
     "Application.StyleDao.executor": "Run",
     "Application.StyleService.executor": "Run",
     "Application.UserDao.executor": "Run",
@@ -124,8 +110,9 @@
     "TomEE Server.TomEE 10.1.28.executor": "Run",
     "Tomcat Server.Tomcat 10.1.28.executor": "Run",
     "Tomcat Server.Tomcat 10.1.341.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.36.executor": "Run",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "Merging Hoang",
+    "git-widget-placeholder": "Hoang",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Study/ATBM/ToolSign/ToolSign",
     "list.type.of.created.stylesheet": "CSS",
@@ -171,60 +158,8 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.36">
-    <configuration name="DeliveryDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.DeliveryDAO" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HashUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="services.application.HashUtil" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="services.application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderDetailServlet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="controllers.OrderDetailServlet" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="OrderSignatureDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.OrderSignatureDAO" />
-      <module name="ProjectWeb" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaymentDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.PaymentDao" />
       <module name="ProjectWeb" />
       <extension name="coverage">
         <pattern>
@@ -242,6 +177,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sign" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="models.Sign" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -419,23 +367,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DeliveryDAO" />
+      <item itemvalue="Application.Sign" />
       <item itemvalue="Application.PriceDAO" />
       <item itemvalue="Application.VoucherDao" />
       <item itemvalue="Application.VoucherService" />
-      <item itemvalue="Application.PaymentDao" />
       <item itemvalue="Application.OrderSignatureDAO" />
-      <item itemvalue="Application.HashUtil" />
-      <item itemvalue="Application.OrderDetailServlet" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.36" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Sign" />
         <item itemvalue="Application.OrderSignatureDAO" />
         <item itemvalue="Application.VoucherService" />
         <item itemvalue="Application.VoucherDao" />
         <item itemvalue="Application.PriceDAO" />
-        <item itemvalue="Application.PaymentDao" />
       </list>
     </recent_temporary>
   </component>

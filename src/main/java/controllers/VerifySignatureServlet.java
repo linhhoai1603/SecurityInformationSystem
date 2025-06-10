@@ -175,7 +175,9 @@ public class VerifySignatureServlet extends HttpServlet {
         String publicKey = orderSignatureService.getPublicKeyById(orderSignature.getId());
         boolean isSignatureValid = false;
         try {
-            isSignatureValid = RSA.verifyWithPublicKey(publicKey, digtalSignature, jsonHash);
+            Sign signer = new Sign();
+            isSignatureValid = signer.verify(jsonHash, digtalSignature, publicKey);
+//            isSignatureValid = RSA.verifyWithPublicKey(publicKey, digtalSignature, jsonHash);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
