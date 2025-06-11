@@ -73,62 +73,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AccountDao.executor": "Run",
-    "Application.AddressDao.executor": "Run",
-    "Application.ContactDAO.executor": "Run",
-    "Application.DBConnection.executor": "Run",
-    "Application.DashboardDAO.executor": "Run",
-    "Application.DeliveryDAO.executor": "Run",
-    "Application.EmailSender.executor": "Run",
-    "Application.HashUtil.executor": "Run",
-    "Application.LoginController.executor": "Run",
-    "Application.MessageDAO.executor": "Run",
-    "Application.OrderDAO.executor": "Run",
-    "Application.OrderDetailDAO.executor": "Run",
-    "Application.OrderDetailServlet.executor": "Run",
-    "Application.OrderSignatureDAO.executor": "Run",
-    "Application.PaymentDao.executor": "Run",
-    "Application.PriceDAO.executor": "Run",
-    "Application.ProductDao.executor": "Run",
-    "Application.ProductService.executor": "Run",
-    "Application.StyleDao.executor": "Run",
-    "Application.StyleService.executor": "Run",
-    "Application.UserDao.executor": "Run",
-    "Application.UserInForServies.executor": "Run",
-    "Application.UserKeyDAO.executor": "Run",
-    "Application.VoucherDao.executor": "Run",
-    "Application.VoucherService.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Smart Tomcat.mytomcat.executor": "Run",
-    "TomEE Server.TomEE 10.1.28.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.28.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.341.executor": "Run",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "Hai",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Study/ATBM/SecurityInformationSystem",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.build",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AccountDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AddressDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ContactDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DBConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DashboardDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DeliveryDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EmailSender.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HashUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginController.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MessageDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDetailDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDetailServlet.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderSignatureDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PriceDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductService.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StyleDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StyleService.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserInForServies.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserKeyDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VoucherDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VoucherService.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.mytomcat.executor&quot;: &quot;Run&quot;,
+    &quot;TomEE Server.TomEE 10.1.28.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.28.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.341.executor&quot;: &quot;Run&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Hai&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Study/ATBM/SecurityInformationSystem&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="models" />
@@ -584,6 +584,7 @@
       <workItem from="1749470409950" duration="4605000" />
       <workItem from="1749562797096" duration="618000" />
       <workItem from="1749567652995" duration="735000" />
+      <workItem from="1749603784120" duration="371000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
