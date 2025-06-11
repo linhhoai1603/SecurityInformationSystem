@@ -44,7 +44,7 @@ public class UpdatePublicKeyServlet extends HttpServlet {
             User user = (User) session.getAttribute("user");
             System.out.println(user.getId());
 
-            if (userKeys == null) {
+//            if (userKeys == null) {
                 boolean inserted = userKeyService.insertUserKey(user.getId(), publicKey);
                 if (inserted) {
                     userKeys = userKeyService.getCurrentUserKey(user.getId());
@@ -53,17 +53,17 @@ public class UpdatePublicKeyServlet extends HttpServlet {
                 } else {
                     request.setAttribute("message", "Thêm khóa thất bại.");
                 }
-            } else {
-                boolean updated = userKeyService.updateUserKey(user.getId(), publicKey);
-                if (updated) {
-                    userKeys.setPublicKey(publicKey);
-                    userKeys.setCreate_at(LocalDateTime.now());
-                    session.setAttribute("userKeys", userKeys);
-                    request.setAttribute("message", "Cập nhật khóa xác nhận thành công!");
-                } else {
-                    request.setAttribute("message", "Cập nhật khóa thất bại.");
-                }
-            }
+//            } else {
+//                boolean updated = userKeyService.updateUserKey(user.getId(), publicKey);
+//                if (updated) {
+//                    userKeys.setPublicKey(publicKey);
+//                    userKeys.setCreate_at(LocalDateTime.now());
+//                    session.setAttribute("userKeys", userKeys);
+//                    request.setAttribute("message", "Cập nhật khóa xác nhận thành công!");
+//                } else {
+//                    request.setAttribute("message", "Cập nhật khóa thất bại.");
+//                }
+//            }
 
             request.setAttribute("userKeys", userKeys);
         }
