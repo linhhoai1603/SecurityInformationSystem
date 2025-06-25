@@ -14,6 +14,10 @@ public class UserKeyService {
         return userKeyDao.getCurrentUserKey(userId);
     }
 
+    public UserKeys getUserKeyById(int keyId) {
+        return userKeyDao.getUserKeysById(keyId);
+    }
+
     public boolean insertUserKey(int userId, String keyValue) {
         try {
             boolean inserted = userKeyDao.insertUserKeys(userId, keyValue);
