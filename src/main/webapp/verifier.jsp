@@ -12,11 +12,21 @@
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navbar.jsp"%>
 <div class="container mt-5">
-    <h2>Thông tin đơn hàng (JSON)</h2>
-    <pre id="jsonContent" style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word;"></pre>
+<%--    <h2>Thông tin đơn hàng (JSON)</h2>--%>
+    <pre id="jsonContent" style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; display: none"></pre>
     <br>
-    <h2>Hash của JSON (SHA-256)</h2>
-    <div id="jsonHash" style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; word-wrap: break-word;"></div>
+<%--    <h2>Hash của JSON (SHA-256)</h2>--%>
+<%--    <div id="jsonHash" style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; word-wrap: break-word;">--%>
+<%--        <button class="btn btn-outline-secondary" type="button" onclick="copyPublicKey()">Copy</button>--%>
+<%--    </div>--%>
+
+
+    <label class="fw-bold">Mã hash của thông tin đơn hàng: </label>
+    <div style="background-color: #fff;padding-left: 10px;border-radius: 5px;border: solid 1px #ccc;word-wrap: break-word;display: flex;align-items: center;">
+        <span id="hashValue" style="flex:1;">${requestScope.orderDataHash}</span>
+        <button class="btn btn-outline-secondary ms-2" id="copyHashBtn" type="button" onclick="copyHash()">Copy</button>
+    </div>
+
     <br>
 
     <form action="order" method="post">
@@ -43,9 +53,11 @@
         <input type="hidden" name="payment" value="${param.payment}">
 
         <%-- Input for public key --%>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 position-relative">
             <label for="public_key" class="fw-bold">Public key:</label>
-            <input type="text" class="form-control" id="public_key" name="public_key" value="${publicKey}" readonly>
+            <div class="input-group">
+                <input type="text" class="form-control" id="public_key" name="public_key" value="${publicKey}" readonly>
+            </div>
         </div>
 
         <%-- Input for Signature --%>
@@ -94,8 +106,27 @@
              hashInput.value = jsonHash || '';
         }
 
-        // Note: Original form data hidden inputs are populated by JSP EL on page load.
     });
+
+    // hàm xử lý sự kiện coppy text
+    function copyHash() {
+        const text = document.getElementById("hashValue").innerText;
+        // navigator.clipboard.writeText(text); // không hiệu ứng
+
+        navigator.clipboard.writeText(text).then(function() {
+            const btn = document.getElementById("copyHashBtn");
+            const original = btn.innerHTML;
+            btn.innerHTML = "&#10003;"; // dấu tích
+            btn.classList.remove("btn-outline-secondary");
+            btn.classList.add("btn-success");
+            setTimeout(function() {
+                btn.innerHTML = original;
+                btn.classList.remove("btn-success");
+                btn.classList.add("btn-outline-secondary");
+            }, 1500);
+        });
+    }
+
 </script>
 </body>
 </html> 

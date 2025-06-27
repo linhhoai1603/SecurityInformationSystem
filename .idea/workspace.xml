@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fbae580-0f5e-4480-ac09-92700fd4c118" name="Changes" comment="">
+    <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/menu-admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/menu-admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/application/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/application/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/email.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/email.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,14 +23,30 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="TypeScript File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Servlet" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/css/detail-product.css" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -40,10 +54,20 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2yz7x704P1ybSrtkL6Fp5TNsZHP" />
+  <component name="ProjectId" id="2pjd0qcRxLCursAU5L99s5ySgwF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
@@ -54,20 +78,168 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.AccountDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AddressDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ContactDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DBConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DashboardDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DeliveryDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EmailSender.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HashUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginController.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MessageDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDetailDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderDetailServlet.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderSignatureDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PriceDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductService.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Sign.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StyleDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StyleService.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserInForServies.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserKeyDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VoucherDao.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VoucherService.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.mytomcat.executor&quot;: &quot;Run&quot;,
+    &quot;TomEE Server.TomEE 10.1.28.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.28.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.Tomcat 10.1.341.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Hai&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.36.executor&quot;: &quot;Run&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Hoang&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/aaa/WorkSpace_32/Android/MobileProject/BE-BankProject&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="Tomcat 10.1.341" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.341" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="models" />
+      <recent name="dao" />
+      <recent name="services" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\aaa\WorkSpace_32\Information security\SecurityInformationSystem\src\main\resources" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\resources" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\webapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\LTWeb\ProjectWeb\src\main\webapp\admin\css" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\webapp\admin" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\webapp\css" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\webapp" />
+      <recent name="D:\LTWeb\ProjectWeb\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="discountPercent" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.36">
+    <configuration name="EmailSender" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="services.application.EmailSender" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderSignatureDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.OrderSignatureDAO" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sign" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="models.Sign" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoucherDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.VoucherDao" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VoucherService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="services.VoucherService" />
+      <module name="ProjectWeb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 10.1.36" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.36" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ProjectWeb:war">
@@ -77,7 +249,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="999d6dd8-d652-4d3a-9702-df14ced48d62" />
+        <option name="BASE_DIRECTORY_NAME" value="502ff5a4-e39d-4b48-88b1-4f3582473993" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -85,7 +257,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="52204" />
+        <option name="DEBUG_PORT" value="63527" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -146,6 +318,16 @@
           <option name="VM_PARAMETERS" value="" />
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
+        <EnvironmentVariables>
+          <option name="NAME" value="API_KEY" />
+          <option name="VALUE" value="814626227372912" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
+        <EnvironmentVariables>
+          <option name="NAME" value="API_SCRET" />
+          <option name="VALUE" value="D76ZOquJOzd5_eL1Mt9TWP4xpWs" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,31 +336,266 @@
         </option>
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="targets">
+            <list>
+              <WatchedTargetModelImpl>
+                <option name="name" value="CONTEXT_XML" />
+                <name>CONTEXT_XML</name>
+              </WatchedTargetModelImpl>
+              <StagingTargetModelImpl>
+                <option name="name" value="STAGING" />
+                <name>STAGING</name>
+              </StagingTargetModelImpl>
+            </list>
+          </option>
+          <option name="transportHostId" value="" />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51009" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.EmailSender" />
+      <item itemvalue="Application.Sign" />
+      <item itemvalue="Application.VoucherDao" />
+      <item itemvalue="Application.VoucherService" />
+      <item itemvalue="Application.OrderSignatureDAO" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.36" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EmailSender" />
+        <item itemvalue="Application.Sign" />
+        <item itemvalue="Application.OrderSignatureDAO" />
+        <item itemvalue="Application.VoucherService" />
+        <item itemvalue="Application.VoucherDao" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1fbae580-0f5e-4480-ac09-92700fd4c118" name="Changes" comment="" />
-      <created>1750825793626</created>
+      <changelist id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="" />
+      <created>1733283199616</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1750825793626</updated>
-      <workItem from="1750825796006" duration="13334000" />
-      <workItem from="1750912554359" duration="12571000" />
-      <workItem from="1750982609512" duration="530000" />
-      <workItem from="1751004194111" duration="5875000" />
+      <updated>1733283199616</updated>
+      <workItem from="1733283200632" duration="204000" />
+      <workItem from="1733283433299" duration="1011000" />
+      <workItem from="1733284467534" duration="5064000" />
+      <workItem from="1733293916791" duration="11903000" />
+      <workItem from="1733369322232" duration="80000" />
+      <workItem from="1733410699849" duration="4596000" />
+      <workItem from="1733445028550" duration="3329000" />
+      <workItem from="1733457050104" duration="9221000" />
+      <workItem from="1733499285728" duration="1321000" />
+      <workItem from="1733538951815" duration="78000" />
+      <workItem from="1733539801508" duration="6894000" />
+      <workItem from="1733548026673" duration="315000" />
+      <workItem from="1733548351669" duration="56000" />
+      <workItem from="1733548424823" duration="23000" />
+      <workItem from="1733558486501" duration="58000" />
+      <workItem from="1733558771178" duration="154000" />
+      <workItem from="1733559120493" duration="1120000" />
+      <workItem from="1733565561132" duration="2101000" />
+      <workItem from="1733624313749" duration="6237000" />
+      <workItem from="1733641642133" duration="22000" />
+      <workItem from="1733647387493" duration="598000" />
+      <workItem from="1733658213035" duration="4233000" />
+      <workItem from="1733727779380" duration="10770000" />
+      <workItem from="1733739116801" duration="976000" />
+      <workItem from="1733753939898" duration="2446000" />
+      <workItem from="1733808521489" duration="2720000" />
+      <workItem from="1733824353704" duration="1643000" />
+      <workItem from="1733843706088" duration="2002000" />
+      <workItem from="1733872330120" duration="1256000" />
+      <workItem from="1733873612337" duration="29000" />
+      <workItem from="1733873675250" duration="36000" />
+      <workItem from="1733873727562" duration="77000" />
+      <workItem from="1733873832316" duration="9706000" />
+      <workItem from="1733886939640" duration="260000" />
+      <workItem from="1733893914830" duration="7000" />
+      <workItem from="1734007361197" duration="466000" />
+      <workItem from="1734008364505" duration="27000" />
+      <workItem from="1734008416632" duration="46000" />
+      <workItem from="1734140324069" duration="2955000" />
+      <workItem from="1734148830279" duration="1952000" />
+      <workItem from="1734164889178" duration="1494000" />
+      <workItem from="1734332037485" duration="2367000" />
+      <workItem from="1734334675368" duration="781000" />
+      <workItem from="1734355068135" duration="1103000" />
+      <workItem from="1734357529592" duration="3967000" />
+      <workItem from="1734390291093" duration="2725000" />
+      <workItem from="1734409583577" duration="13179000" />
+      <workItem from="1734427370148" duration="3971000" />
+      <workItem from="1734431546669" duration="3871000" />
+      <workItem from="1734446082539" duration="5862000" />
+      <workItem from="1734486921950" duration="5426000" />
+      <workItem from="1734512362622" duration="264000" />
+      <workItem from="1734520525955" duration="4867000" />
+      <workItem from="1734530691947" duration="5774000" />
+      <workItem from="1734591374997" duration="111000" />
+      <workItem from="1734592218893" duration="198000" />
+      <workItem from="1734607604346" duration="892000" />
+      <workItem from="1734621466329" duration="3652000" />
+      <workItem from="1734681344921" duration="2452000" />
+      <workItem from="1734700806963" duration="1229000" />
+      <workItem from="1734773465534" duration="29000" />
+      <workItem from="1734773502932" duration="35000" />
+      <workItem from="1734773546738" duration="9022000" />
+      <workItem from="1734828899142" duration="12022000" />
+      <workItem from="1734860166323" duration="1545000" />
+      <workItem from="1734930328979" duration="1039000" />
+      <workItem from="1734942685401" duration="3346000" />
+      <workItem from="1734960012301" duration="165000" />
+      <workItem from="1735024135930" duration="2364000" />
+      <workItem from="1735026677289" duration="530000" />
+      <workItem from="1735027410961" duration="802000" />
+      <workItem from="1735052504627" duration="1636000" />
+      <workItem from="1735172225721" duration="596000" />
+      <workItem from="1735196137975" duration="7000" />
+      <workItem from="1735294932164" duration="4773000" />
+      <workItem from="1735309459405" duration="2284000" />
+      <workItem from="1735353288642" duration="23000" />
+      <workItem from="1735876705877" duration="908000" />
+      <workItem from="1735952279136" duration="1707000" />
+      <workItem from="1735965372227" duration="911000" />
+      <workItem from="1735978167443" duration="151000" />
+      <workItem from="1735980367059" duration="2143000" />
+      <workItem from="1735982736626" duration="3360000" />
+      <workItem from="1735986241412" duration="1995000" />
+      <workItem from="1735988404215" duration="353000" />
+      <workItem from="1735992015756" duration="11070000" />
+      <workItem from="1736041927540" duration="624000" />
+      <workItem from="1736045116138" duration="2775000" />
+      <workItem from="1736048035828" duration="5739000" />
+      <workItem from="1736056135030" duration="9754000" />
+      <workItem from="1736207890705" duration="3827000" />
+      <workItem from="1736214028798" duration="1043000" />
+      <workItem from="1736298825124" duration="1414000" />
+      <workItem from="1736300290518" duration="8376000" />
+      <workItem from="1736309011066" duration="1698000" />
+      <workItem from="1736312353197" duration="69000" />
+      <workItem from="1736312440050" duration="8000" />
+      <workItem from="1736312459071" duration="21000" />
+      <workItem from="1736312503994" duration="6000" />
+      <workItem from="1736312517116" duration="97000" />
+      <workItem from="1736312633575" duration="270000" />
+      <workItem from="1736312989532" duration="47000" />
+      <workItem from="1736313054492" duration="1325000" />
+      <workItem from="1736314415164" duration="3773000" />
+      <workItem from="1736351239913" duration="2671000" />
+      <workItem from="1736389874263" duration="1693000" />
+      <workItem from="1736395759407" duration="53000" />
+      <workItem from="1736404293117" duration="732000" />
+      <workItem from="1736421389486" duration="13685000" />
+      <workItem from="1736471958929" duration="1884000" />
+      <workItem from="1736474714039" duration="6274000" />
+      <workItem from="1736500613073" duration="3832000" />
+      <workItem from="1736580080700" duration="20736000" />
+      <workItem from="1736648171794" duration="17710000" />
+      <workItem from="1736676640014" duration="3109000" />
+      <workItem from="1736688263101" duration="9827000" />
+      <workItem from="1736728022543" duration="1834000" />
+      <workItem from="1736735530089" duration="709000" />
+      <workItem from="1736736258414" duration="2845000" />
+      <workItem from="1736739140477" duration="36000" />
+      <workItem from="1736744495194" duration="20000" />
+      <workItem from="1736753383434" duration="11000" />
+      <workItem from="1738663401813" duration="25000" />
+      <workItem from="1738663439815" duration="90000" />
+      <workItem from="1738663537805" duration="10000" />
+      <workItem from="1738663554864" duration="121000" />
+      <workItem from="1738663737958" duration="5000" />
+      <workItem from="1738663758588" duration="165000" />
+      <workItem from="1738663934260" duration="6000" />
+      <workItem from="1746757157808" duration="2193000" />
+      <workItem from="1746759867987" duration="6431000" />
+      <workItem from="1746793261302" duration="4323000" />
+      <workItem from="1746885068315" duration="254000" />
+      <workItem from="1747650134218" duration="27000" />
+      <workItem from="1747654921458" duration="733000" />
+      <workItem from="1748229411326" duration="1895000" />
+      <workItem from="1748235442271" duration="1540000" />
+      <workItem from="1748248846494" duration="1490000" />
+      <workItem from="1748251046347" duration="24512000" />
+      <workItem from="1748357031585" duration="8045000" />
+      <workItem from="1748402177686" duration="13101000" />
+      <workItem from="1748422181884" duration="7658000" />
+      <workItem from="1748439931675" duration="12079000" />
+      <workItem from="1748758004078" duration="19932000" />
+      <workItem from="1748787830019" duration="11292000" />
+      <workItem from="1748833897993" duration="26292000" />
+      <workItem from="1748494282560" duration="19926000" />
+      <workItem from="1748589810774" duration="2115000" />
+      <workItem from="1748882399597" duration="746000" />
+      <workItem from="1749206878850" duration="3634000" />
+      <workItem from="1749343277893" duration="11499000" />
+      <workItem from="1749417639568" duration="912000" />
+      <workItem from="1749470409950" duration="4605000" />
+      <workItem from="1749562797096" duration="618000" />
+      <workItem from="1750580995455" duration="189000" />
     </task>
+    <task id="LOCAL-00001" summary="modify register controller">
+      <option name="closed" value="true" />
+      <created>1735985850771</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1735985850771</updated>
+    </task>
+    <task id="LOCAL-00002" summary="modify register controller">
+      <option name="closed" value="true" />
+      <created>1735985855166</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735985855166</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modify register controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify register controller" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

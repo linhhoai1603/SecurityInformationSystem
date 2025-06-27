@@ -11,8 +11,10 @@ import services.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
+// verifier.jsp
 @WebServlet(name = "OrderServlet", value = "/order")
 public class OrderServlet extends HttpServlet {
     String methodPay;
@@ -65,12 +67,101 @@ public class OrderServlet extends HttpServlet {
             removeCart(request, response);
             // set attribute
             request.setAttribute("ordered", ordered);
+
+            // set digitalSignature
+            String digitalSignature = request.getParameter("digitalSignature");
+            request.setAttribute("digitalSignature", digitalSignature);
+
+            // Send mail order infor
+            User user = (User) request.getSession().getAttribute("user");
+            sendOrderConfirmationEmail(user, ordered, digitalSignature);
+
             // forward to payment-success.jsp
             request.setAttribute("message", "Đặt hàng thành công!");
             request.getRequestDispatcher("payment-success.jsp").forward(request, response);
         }
         // If other payment methods are addeld ater, they should be handled in an else if or separate servlet.
     }
+
+//    private void sendOrderConfirmationEmail(User user, Ordered ordered, String digitalSignature) {
+//        String email = user.getEmail();
+//        StringBuilder emailContent = new StringBuilder();
+//        emailContent.append("Xin chào ").append(user.getFullName()).append(",\n\n");
+//        emailContent.append("Cảm ơn bạn đã đặt hàng tại hệ thống của chúng tôi!\n\n");
+//        emailContent.append("Thông tin đơn hàng:\n");
+//        emailContent.append("Mã đơn hàng: ").append(ordered.getIdOrder()).append("\n");
+//        emailContent.append("Thời gian mua hàng: ").append(ordered.getTimeOrdered()).append("\n");
+//        emailContent.append("Người mua hàng: ").append(ordered.getPersonName()).append("\n");
+//        emailContent.append("Địa chỉ nhận hàng: ").append(ordered.getAddress()).append("\n");
+//        emailContent.append("Tổng cộng: ").append(ordered.getCart().getLastPrice()).append("đ\n");
+//        emailContent.append("Phương thức thanh toán: ").append(ordered.getMethodPayment()).append("\n");
+//        emailContent.append("Chữ ký xác nhận: ").append(digitalSignature).append("\n\n");
+//        emailContent.append("Chi tiết sản phẩm:\n");
+//        for (CartItem item : ordered.getCart().getItems().values()) {
+//            emailContent.append("- ")
+//                    .append(item.getStyle().getProduct().getName())
+//                    .append(" - ").append(item.getStyle().getName())
+//                    .append(", SL: ").append(item.getQuantity())
+//                    .append(", Tổng: ").append(item.getTotalPrice()).append("đ\n");
+//        }
+//        emailContent.append("\nNếu có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi.\n");
+//        emailContent.append("Trân trọng!");
+//        services.application.EmailSender.sendEMail(
+//                email,
+//                "Xác nhận đơn hàng #" + ordered.getIdOrder(),
+//                emailContent.toString()
+//        );
+//    }
+private void sendOrderConfirmationEmail(User user, Ordered ordered, String digitalSignature) {
+    String email = user.getEmail();
+    String subject = "🎉 Xác nhận đơn hàng #" + ordered.getIdOrder() + " - Cảm ơn bạn đã mua hàng!";
+
+    StringBuilder html = new StringBuilder();
+    html.append("<div style='font-family:Arial,sans-serif;max-width:600px;margin:auto;border-radius:10px;border:1px solid #eee;box-shadow:0 2px 8px #eee;padding:24px;background:#f9f9f9;'>");
+    html.append("<h2 style='color:#4fd0b6;text-align:center;'>Cảm ơn bạn đã đặt hàng!</h2>");
+    html.append("<p style='text-align:center;font-size:18px;'>Xin chào <b>").append(user.getFullName()).append("</b>,</p>");
+    html.append("<p style='text-align:center;'>Đơn hàng của bạn đã được ghi nhận thành công.</p>");
+    html.append("<hr style='margin:24px 0;'>");
+
+    html.append("<h3 style='color:#4fd0b6;'>Thông tin đơn hàng</h3>");
+    html.append("<table style='width:100%;font-size:16px;'>");
+    html.append("<tr><td><b>Mã đơn hàng:</b></td><td>").append(ordered.getIdOrder()).append("</td></tr>");
+    html.append("<tr><td><b>Thời gian mua hàng:</b></td><td>").append(ordered.getTimeOrdered()).append("</td></tr>");
+    html.append("<tr><td><b>Người mua hàng:</b></td><td>").append(ordered.getPersonName()).append("</td></tr>");
+    html.append("<tr><td><b>Địa chỉ nhận hàng:</b></td><td>").append(ordered.getAddress()).append("</td></tr>");
+    html.append("<tr><td><b>Tổng cộng:</b></td><td><b style='color:#e67e22;'>").append(ordered.getCart().getLastPrice()).append("đ</b></td></tr>");
+    html.append("<tr><td><b>Phương thức thanh toán:</b></td><td>").append(ordered.getMethodPayment()).append("</td></tr>");
+    html.append("<tr><td><b>Chữ ký xác nhận:</b></td><td><span style='word-break:break-all;background:#eafaf1;padding:4px 8px;border-radius:4px;display:inline-block;'>")
+            .append(digitalSignature).append("</span></td></tr>");
+    html.append("</table>");
+
+    html.append("<h3 style='color:#4fd0b6;margin-top:32px;'>Chi tiết sản phẩm</h3>");
+    html.append("<table style='width:100%;border-collapse:collapse;font-size:15px;'>");
+    html.append("<tr style='background:#eafaf1;'><th style='padding:8px;border:1px solid #ddd;'>Sản phẩm</th><th style='padding:8px;border:1px solid #ddd;'>Số lượng</th><th style='padding:8px;border:1px solid #ddd;'>Tổng</th></tr>");
+    for (CartItem item : ordered.getCart().getItems().values()) {
+        html.append("<tr>");
+        html.append("<td style='padding:8px;border:1px solid #ddd;'>")
+                .append(item.getStyle().getProduct().getName())
+                .append(" - ").append(item.getStyle().getName())
+                .append("</td>");
+        html.append("<td style='padding:8px;border:1px solid #ddd;text-align:center;'>")
+                .append(item.getQuantity()).append("</td>");
+        html.append("<td style='padding:8px;border:1px solid #ddd;text-align:right;'>")
+                .append(item.getTotalPrice()).append("đ</td>");
+        html.append("</tr>");
+    }
+    html.append("</table>");
+
+    html.append("<p style='margin-top:32px;text-align:center;'>Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi.<br>Trân trọng!</p>");
+    html.append("</div>");
+
+    services.application.EmailSender.sendEMail(
+            email,
+            subject,
+            html.toString(),
+            true // gửi HTML
+    );
+}
 
     private void removeCart(HttpServletRequest request, HttpServletResponse response) {
         Cart cart = new Cart();

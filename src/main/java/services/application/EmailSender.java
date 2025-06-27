@@ -9,6 +9,10 @@ import java.util.Properties;
 
 public class EmailSender {
     public static void sendEMail(String to, String subject, String text) {
+        sendEMail(to, subject, text, false);
+    }
+
+    public static void sendEMail(String to, String subject, String text, boolean isHtml) {
         // Thiết lập thuộc tính email
         Properties props = new Properties();
         props.put("mail.smtp.auth", EmailProperties.AUTH);
@@ -27,7 +31,11 @@ public class EmailSender {
             message.setFrom(new InternetAddress(EmailProperties.USER));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
-            message.setText(text);
+            if (isHtml) {
+                message.setContent(text, "text/html; charset=utf-8");
+            } else {
+                message.setText(text);
+            }
             // Gửi mail
             Transport.send(message);
             System.out.println("Sent message successfully....");
@@ -39,6 +47,6 @@ public class EmailSender {
     }
 
     public static void main(String[] args) {
-        EmailSender.sendEMail("22130084@st.hcmuaf.edu.vn", "Test", "Hello");
+        EmailSender.sendEMail("phanhoang03505@gmail.com", "Test", "Hello");
     }
 }
