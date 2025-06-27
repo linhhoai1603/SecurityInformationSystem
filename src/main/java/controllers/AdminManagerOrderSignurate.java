@@ -26,9 +26,24 @@ public class AdminManagerOrderSignurate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String method = request.getParameter("method");
-        if("searchOrderSign".equals(method)) {
+        if ("searchOrderSign".equals(method)) {
             searchOrderSign(request, response);
         }
+        if("detailOrderSign".equals(method)) {
+            detailOrderSign(request, response);
+        }
+    }
+
+    private void detailOrderSign(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int orderId = Integer.parseInt(request.getParameter("id"));
+        OrderService orderService = new OrderService();
+        Order order = orderService.getOrder(orderId);
+        OrderSignatureService orderSignatureService = new OrderSignatureService();
+        List<OrderSignatures> listOrderSign = orderSignatureService.getSignaturesByIdOrder(orderId);
+        if (listOrderSign.isEmpty()) return;
+        request.setAttribute("order", order);
+        request.setAttribute("orderSign", listOrderSign);
+        request.getRequestDispatcher("management-order-signurate-detail.jsp").forward(request, response);
     }
 
     private void searchOrderSign(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

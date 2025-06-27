@@ -11,6 +11,18 @@
     <title>Chi tiết chữ ký đơn hàng</title>
     <%@include file="../includes/link/headLink.jsp" %>
     <link rel="stylesheet" href="css/management.css">
+    <style>
+        .code-box {
+            max-width: 100%;
+            max-height: 80px;
+            overflow: auto;
+            background-color: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+    </style>
 </head>
 <body>
 <%@include file="menu-admin.jsp" %>
@@ -60,17 +72,50 @@
     </table>
 
     <%--    Thông tin chữ ký    --%>
-    h4 class="mb-3">Thông Tin Chữ Ký</h4>
+    <h4 class="mb-3">Thông Tin Chữ Ký</h4>
     <div class="row mb-4">
         <div class="col-md-12">
             <c:choose>
                 <c:when test="${not empty requestScope.orderSign}">
-                    <p><strong>Mã Chữ Ký:</strong> ${requestScope.orderSign.id}</p>
-                    <p><strong>Chữ Ký Số:</strong>${requestScope.orderSign.digitalSignature}</p>
-                    <p><strong>Trạng Thái Xác Minh:</strong> ${requestScope.orderSign.verified}</p>
-                    <p><strong>Thời Gian Tạo:</strong> ${requestScope.orderSign.create_at}</p>
-                    <p><strong>Mã Khóa:</strong> ${requestScope.orderSign.userKeys.id}</p>
-                    <p><strong>Khóa Công Khai:</strong>${requestScope.orderSign.userKeys.publicKey}</p>
+                    <%--                    <p><strong>Mã Chữ Ký:</strong> ${requestScope.orderSign.id}</p>--%>
+                    <%--                    <p><strong>Chữ Ký Số:</strong>${requestScope.orderSign.digitalSignature}</p>--%>
+                    <%--                    <p><strong>Trạng Thái Xác Minh:</strong> ${requestScope.orderSign.verified}</p>--%>
+                    <%--                    <p><strong>Thời Gian Tạo:</strong> ${requestScope.orderSign.create_at}</p>--%>
+                    <%--                    <p><strong>Mã Khóa:</strong> ${requestScope.orderSign.userKeys.id}</p>--%>
+                    <%--                    <p><strong>Khóa Công Khai:</strong>${requestScope.orderSign.userKeys.publicKey}</p>--%>
+                    <table class="table table-bordered table-striped custom-table">
+                        <thead>
+                        <tr>
+                            <th>Mã Chữ Ký</th>
+                            <th>Chữ Ký Số</th>
+                            <th>Trạng Thái Xác Minh</th>
+                            <th>Thời Gian Tạo</th>
+                            <th>Mã Khóa</th>
+                            <th>Khóa Công Khai</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="signature" items="${requestScope.orderSign}">
+                            <tr>
+                                <td>${signature.id}</td>
+                                <td>
+                                    <div class="code-box">
+                                            ${signature.digitalSignature}
+                                    </div>
+                                </td>
+
+                                <td>${signature.verified}</td>
+                                <td>${signature.create_at}</td>
+                                <td>${signature.userKeys.id}</td>
+                                <td>
+                                    <div class="code-box">
+                                            ${signature.userKeys.publicKey}
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </c:when>
                 <c:otherwise>
                     <p class="text-danger">Chưa có chữ ký cho đơn hàng này.</p>

@@ -14,6 +14,7 @@
     box-sizing: border-box;
   }
   .slide{
+    z-index: 1;
     height: 100%;
     width: 200px;
     position: absolute;
@@ -43,7 +44,7 @@
     width: 30px;
     top: 20px;
     Left: 15px;
-    z-index: 1;
+    z-index: 2;
     cursor: pointer;
     border-radius: 2px;
     background-color: #fff;

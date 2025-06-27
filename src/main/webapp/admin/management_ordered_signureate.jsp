@@ -11,6 +11,18 @@
     <title>Quản lý chữ ký đơn hàng</title>
     <%@include file="../includes/link/headLink.jsp" %>
     <link rel="stylesheet" href="css/management.css">
+    <style>
+        .code-box {
+            max-width: 100%;
+            max-height: 80px;
+            overflow: auto;
+            background-color: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+    </style>
 </head>
 <body>
 <%@include file="menu-admin.jsp" %>
@@ -32,16 +44,6 @@
         <%--            </c:if>--%>
         <%--        </div>--%>
         <div class="col-md-4">
-            <%--            <form method="post" action="${pageContext.request.contextPath}/admin/order-signurate" class="d-flex float-end w-100">--%>
-            <%--                <div class="row w-100">--%>
-            <%--                    <div class="col-md-8">--%>
-            <%--                        <input type="number" placeholder="Tìm theo mã đơn hàng" name="idOrder" class="form-control me-2">--%>
-            <%--                    </div>--%>
-            <%--                    <div class="col-md-4">--%>
-            <%--                        <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--            </form>--%>
             <form class="d-flex" action="order-signurate?method=searchOrderSign" method="POST">
                 <input type="hidden" name="method" value="searchOrderSign">
                 <input class="form-control me-2" type="search" name="inputName" placeholder="Tìm kiếm sản phẩm theo ID"
@@ -64,16 +66,26 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="orderSign" items="${requestScope.orderSign}">
+        <c:forEach var="sign" items="${requestScope.orderSign}">
             <tr>
-                <td>${orderSign.order.id}</td>
-                <td>${orderSign.order.user.id}</td>
-                <td>${orderSign.digitalSignature}</td>
-                <td>${orderSign.userKeys.publicKey}</td>
-                <td>${orderSign.verified}</td>
-                <td><a class="btn btn-info"
-                       href="${pageContext.request.contextPath}/admin/order-signature-detail?orderId=${orderSign.order.id}">Xem
-                    chi tiết</a></td>
+                <td>${sign.order.id}</td>
+                <td>${sign.order.user.id}</td>
+                <td>
+                    <div class="code-box">
+                            ${sign.digitalSignature}
+                    </div>
+                </td>
+                <td>
+                    <div class="code-box">
+                            ${sign.userKeys.publicKey}
+                    </div>
+                </td>
+                <td>${sign.verified}</td>
+                <td><form id="detailForm" action="order-signurate" method="POST" style="display: inline;">
+                    <input type="hidden" name="method" value="detailOrderSign">
+                    <input type="hidden" name="id" value="${sign.order.id}">
+                    <button type="submit" class="btn btn-warning">Xem chi tiết</button>
+                </form></td>
             </tr>
         </c:forEach>
         </tbody>

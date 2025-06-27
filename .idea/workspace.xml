@@ -10,15 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fbae580-0f5e-4480-ac09-92700fd4c118" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/OrderSignatureUserKeyServices.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderSignInfoServices.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/css/menu-admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/css/menu-admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/menu-admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/menu-admin.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +173,8 @@
       <updated>1750825793626</updated>
       <workItem from="1750825796006" duration="13334000" />
       <workItem from="1750912554359" duration="12571000" />
+      <workItem from="1750982609512" duration="530000" />
+      <workItem from="1751004194111" duration="5875000" />
     </task>
     <servers />
   </component>
