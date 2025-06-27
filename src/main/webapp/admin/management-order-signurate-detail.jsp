@@ -53,6 +53,7 @@
             <th>Số Lượng</th>
             <th>Giá Tiền</th>
             <th>Tổng Giá</th>
+            <th>Hành Động</th>
         </tr>
         </thead>
         <tbody>
@@ -65,9 +66,17 @@
                 <td>${detail.quantity}</td>
                 <td><fmt:formatNumber value="${detail.style.product.price.lastPrice}" type="number"/>₫</td>
                 <td><fmt:formatNumber value="${detail.totalPrice}" type="number"/>₫</td>
+                <td>
+                    <button class="btn btn-primary btn-sm edit-order-item"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editOrderItem"
+                            data-detail-id="${detail.id}"
+                            data-order-id="${requestScope.order.id}"
+                            data-quantity="${detail.quantity}">Chỉnh sửa
+                    </button>
+                </td>
             </tr>
         </c:forEach>
-
         </tbody>
     </table>
 
@@ -77,12 +86,6 @@
         <div class="col-md-12">
             <c:choose>
                 <c:when test="${not empty requestScope.orderSign}">
-                    <%--                    <p><strong>Mã Chữ Ký:</strong> ${requestScope.orderSign.id}</p>--%>
-                    <%--                    <p><strong>Chữ Ký Số:</strong>${requestScope.orderSign.digitalSignature}</p>--%>
-                    <%--                    <p><strong>Trạng Thái Xác Minh:</strong> ${requestScope.orderSign.verified}</p>--%>
-                    <%--                    <p><strong>Thời Gian Tạo:</strong> ${requestScope.orderSign.create_at}</p>--%>
-                    <%--                    <p><strong>Mã Khóa:</strong> ${requestScope.orderSign.userKeys.id}</p>--%>
-                    <%--                    <p><strong>Khóa Công Khai:</strong>${requestScope.orderSign.userKeys.publicKey}</p>--%>
                     <table class="table table-bordered table-striped custom-table">
                         <thead>
                         <tr>
@@ -92,6 +95,7 @@
                             <th>Thời Gian Tạo</th>
                             <th>Mã Khóa</th>
                             <th>Khóa Công Khai</th>
+                            <th>Hành Động</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,7 +107,6 @@
                                             ${signature.digitalSignature}
                                     </div>
                                 </td>
-
                                 <td>${signature.verified}</td>
                                 <td>${signature.create_at}</td>
                                 <td>${signature.userKeys.id}</td>
@@ -111,6 +114,15 @@
                                     <div class="code-box">
                                             ${signature.userKeys.publicKey}
                                     </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm edit-status-order-sign"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editStatusOrderSign"
+                                            data-order-id="${requestScope.order.id}"
+                                            data-signature-id="${signature.id}"
+                                            data-status="${requestScope.order.status}">Chỉnh sửa
+                                    </button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -130,7 +142,142 @@
                 sách Chữ ký xác nhận</a>
         </div>
     </div>
+    <!-- Modal chỉnh sửa chi tiết sản phẩm -->
+    <div class="modal fade" id="editOrderItem" tabindex="-1" aria-labelledby="editOrderItemModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOrderItemModalLabel">Chỉnh sửa sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="${pageContext.request.contextPath}/admin/order-signature-detail?method=editOrderItem"
+                          method="POST">
+                        <input type="hidden" name="detailId" id="detailId">
+                        <input type="hidden" name="orderId" id="orderId">
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Số lượng</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal chỉnh sửa trạng thái đơn hàng -->
+    <div class="modal fade" id="editStatusOrderSign" tabindex="-1" aria-labelledby="editStatusOrderSignModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editStatusOrderSignModalLabel">Chỉnh sửa trạng thái đơn hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="${pageContext.request.contextPath}/admin/order-signature-detail?method=editStatusOrderSign"
+                          method="POST">
+                        <input type="hidden" name="orderId" id="statusOrderId">
+                        <input type="hidden" name="signatureId" id="signatureId">
+                        <div class="mb-3">
+                            <label class="form-label">Trạng thái</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="verified"
+                                       value="CONFIRMED" required>
+                                <label class="form-check-label" for="verified">Verified (Đã xác nhận)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="nonVerified"
+                                       value="PENDING">
+                                <label class="form-check-label" for="nonVerified">Non-Verified (Chưa xác minh)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="verifyAgain"
+                                       value="PENDING">
+                                <label class="form-check-label" for="verifyAgain">Verify-Again (Yêu cầu xác minh
+                                    lại)</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    // Lưu trữ nút kích hoạt modal
+    let triggerButton = null;
+    // Lưu nút kích hoạt khi mở modal
+    document.querySelectorAll('.edit-order-item, .edit-status-order-sign').forEach(function (button) {
+        button.addEventListener('click', function () {
+            triggerButton = this;
+        });
+    });
+    // Điền dữ liệu vào modal chỉnh sửa chi tiết sản phẩm
+    document.getElementById('editOrderItem').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var detailId = button.getAttribute('data-detail-id');
+        var orderId = button.getAttribute('data-order-id');
+        var quantity = button.getAttribute('data-quantity');
+        // var price = button.getAttribute('data-price');
+
+        var modal = this;
+        modal.querySelector('#detailId').value = detailId;
+        modal.querySelector('#orderId').value = orderId;
+        modal.querySelector('#quantity').value = quantity;
+        // modal.querySelector('#price').value = parseFloat(price).toFixed(2);
+    });
+    // Điền dữ liệu vào modal chỉnh sửa trạng thái đơn hàng
+    document.getElementById('editStatusOrderSign').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var orderId = button.getAttribute('data-order-id');
+        var signatureId = button.getAttribute('data-signature-id');
+        var status = button.getAttribute('data-status');
+
+        var modal = this;
+        modal.querySelector('#statusOrderId').value = orderId;
+        modal.querySelector('#signatureId').value = signatureId;
+        var radio = modal.querySelector(`input[name="status"][value="${status}"]`);
+        if (radio) radio.checked = true;
+    });
+    // // Quản lý tiêu điểm khi đóng modal
+    // document.querySelectorAll('.modal').forEach(function (modal) {
+    //     modal.addEventListener('hidden.bs.modal', function (event) {
+    //         var triggerButton = document.activeElement.closest('.modal') ?
+    //             document.querySelector('.edit-order-item, .edit-status-order-sign') :
+    //             document.activeElement;
+    //         if (triggerButton) {
+    //             triggerButton.focus();
+    //         } else {
+    //             document.querySelector('.container').focus();
+    //         }
+    //     });
+    // });
+    // Chuyển tiêu điểm về nút kích hoạt hoặc container khi nhấn "Hủy"
+    function moveFocusToTrigger() {
+        if (triggerButton) {
+            triggerButton.focus();
+        } else {
+            document.querySelector('.container').focus();
+        }
+    }
+
+    // Xóa tiêu điểm khỏi nút "Hủy" hoặc nút đóng khi modal bắt đầu đóng
+    document.querySelectorAll('.modal .btn-secondary, .modal .btn-close').forEach(function (button) {
+        button.addEventListener('click', function () {
+            moveFocusToTrigger();
+        });
+    });
+</script>
 
 <%@include file="../includes/link/footLink.jsp" %>
 </body>

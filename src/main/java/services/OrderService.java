@@ -65,5 +65,8 @@ public class OrderService {
         return ordersForPage;
     }
 
+    public boolean updateOrder(Order order) {
+        return dao.updateOrder(order);
+    }
 
 }

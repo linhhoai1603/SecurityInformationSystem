@@ -50,6 +50,7 @@
                        aria-label="Search" required>
                 <button class="btn btn-primary" type="submit">Tìm kiếm</button>
             </form>
+            <a class="btn btn-warning" href="order-signurate">Xem tất cả sản phẩm</a>
         </div>
     </div>
 

@@ -17,10 +17,11 @@ import java.util.List;
 public class AdminManagerOrderSignurate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        OrderSignatureService orderSignatureService = new OrderSignatureService();
-        List<OrderSignatures> orderSignatures = orderSignatureService.getSignaturesAll();
-        request.setAttribute("orderSign", orderSignatures);
-        request.getRequestDispatcher("management_ordered_signureate.jsp").forward(request, response);
+//        OrderSignatureService orderSignatureService = new OrderSignatureService();
+//        List<OrderSignatures> orderSignatures = orderSignatureService.getSignaturesAll();
+//        request.setAttribute("orderSign", orderSignatures);
+//        request.getRequestDispatcher("management_ordered_signureate.jsp").forward(request, response);
+        getALlSign(request, response);
     }
 
     @Override
@@ -32,6 +33,16 @@ public class AdminManagerOrderSignurate extends HttpServlet {
         if("detailOrderSign".equals(method)) {
             detailOrderSign(request, response);
         }
+        if("getAllSign".equals(method)) {
+            getALlSign(request, response);
+        }
+    }
+
+    private void getALlSign(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderSignatureService orderSignatureService = new OrderSignatureService();
+        List<OrderSignatures> orderSignatures = orderSignatureService.getSignaturesAll();
+        request.setAttribute("orderSign", orderSignatures);
+        request.getRequestDispatcher("management_ordered_signureate.jsp").forward(request, response);
     }
 
     private void detailOrderSign(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
