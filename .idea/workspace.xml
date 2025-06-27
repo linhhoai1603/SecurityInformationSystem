@@ -13,9 +13,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OrderServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/application/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/application/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/ordered.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ordered.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/payment-success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/payment-success.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/verifier.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/verifier.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/email.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/email.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +158,7 @@
       <command value="discountPercent" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.EmailSender">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.36">
     <configuration name="EmailSender" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="services.application.EmailSender" />
       <module name="ProjectWeb" />
