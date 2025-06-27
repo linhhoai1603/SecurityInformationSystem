@@ -11,8 +11,10 @@ import services.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
+// verifier.jsp
 @WebServlet(name = "OrderServlet", value = "/order")
 public class OrderServlet extends HttpServlet {
     String methodPay;
@@ -65,6 +67,17 @@ public class OrderServlet extends HttpServlet {
             removeCart(request, response);
             // set attribute
             request.setAttribute("ordered", ordered);
+
+            // LẤY CHỮ KÝ SỐ VÀ TRUYỀN SANG JSP
+//            OrderSignatureService orderSignatureService = new OrderSignatureService();
+//            List<OrderSignatures> signatures = orderSignatureService.getSignaturesByIdOrder(ordered.getIdOrder());
+//            String digitalSignature = "";
+//            if (signatures != null && !signatures.isEmpty()) {
+//                digitalSignature = signatures.get(signatures.size() - 1).getDigitalSignature();
+//            }
+            String digitalSignature = request.getParameter("digitalSignature");
+            request.setAttribute("digitalSignature", digitalSignature);
+
             // forward to payment-success.jsp
             request.setAttribute("message", "Đặt hàng thành công!");
             request.getRequestDispatcher("payment-success.jsp").forward(request, response);
