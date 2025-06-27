@@ -14,6 +14,7 @@
     box-sizing: border-box;
   }
   .slide{
+    z-index: 1;
     height: 100%;
     width: 200px;
     position: absolute;
@@ -43,7 +44,7 @@
     width: 30px;
     top: 20px;
     Left: 15px;
-    z-index: 1;
+    z-index: 2;
     cursor: pointer;
     border-radius: 2px;
     background-color: #fff;
@@ -118,6 +119,7 @@
       <li><a href="management-users.jsp"><i class="fa-solid fa-users"></i>Người dùng</a></li>
       <li><a href="management-products.jsp"><i class="fa-solid fa-clone"></i>Sản phẩm</a></li>
       <li><a href="manager-order"><i class="fa-solid fa-cart-shopping"></i>Đơn hàng</a></li>
+      <li><a href="order-signurate">Chữ ký xác nhận</a></li>
       <li><a href="manager-deliveries"><i class="fa-solid fa-truck-fast"></i>Vận chuyển</a></li>
       <li><a href="manager-voucher"><i class="fa-solid fa-ticket"></i>Mã giảm giá</a></li>
       <li><a href="manager-message"><i class="fa-regular fa-message"></i>Tin nhắn</a></li>

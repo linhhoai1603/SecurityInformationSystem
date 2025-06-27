@@ -12,7 +12,8 @@ import java.util.logging.Level;
 
 public class OrderSignatureDAO {
     Jdbi jdbi;
-    public OrderSignatureDAO(){
+
+    public OrderSignatureDAO() {
         this.jdbi = DBConnection.getConnetion();
     }
 
@@ -178,6 +179,70 @@ public class OrderSignatureDAO {
         });
     }
 
+    public List<OrderSignatures> getSignaturesAll() {
+        String sql = "SELECT \n" +
+                "os.id AS id_orderSignatures,\n" +
+                "os.order_id AS id_order,\n" +
+                "os.key_id AS id_userKey,\n" +
+                "os.delivery_id AS id_delivery,\n" +
+                "os.digital_signature AS digital_signature,\n" +
+                "os.verified AS verify_status,\n" +
+                "os.create_at AS create_at,\n" +
+                "d.fullName AS fullName,\n" +
+                "d.phoneNumber AS phoneNumber,\n" +
+                "uk.public_key AS public_key,\n" +
+                "uk.user_id AS id_user,\n" +
+                "o.timeOrder AS time_ordered,\n" +
+                "o.statusOrder AS status,\n" +
+                "o.totalPrice AS total_price,\n" +
+                "o.lastPrice AS last_price\n" +
+                "FROM order_signatures os\n" +
+                "JOIN orders o ON os.order_id = o.id\n" +
+                "JOIN user_keys uk ON os.key_id = uk.id\n" +
+                "JOIN deliveries d ON os.delivery_id = d.id";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            try {
+                                OrderSignatures signature = new OrderSignatures();
+                                signature.setId(rs.getInt("id_orderSignatures"));
+                                signature.setDigitalSignature(rs.getString("digital_signature"));
+                                signature.setVerified(rs.getString("verify_status"));
+                                signature.setCreate_at(rs.getObject("create_at", LocalDateTime.class));
+
+                                Order order = new Order();
+                                order.setId(rs.getInt("id_order"));
+                                order.setTimeOrdered(rs.getObject("time_ordered", LocalDateTime.class));
+                                order.setStatus(rs.getString("status"));
+                                order.setTotalPrice(rs.getDouble("total_price"));
+                                order.setLastPrice(rs.getDouble("last_price"));
+                                User user = new User();
+                                user.setId(rs.getInt("id_user"));
+                                order.setUser(user);
+                                signature.setOrder(order);
+
+                                UserKeys userKeys = new UserKeys();
+                                userKeys.setId(rs.getInt("id_userKey"));
+                                userKeys.setPublicKey(rs.getString("public_key"));
+                                userKeys.setUser(user);
+                                signature.setUserKeys(userKeys);
+
+                                Delivery delivery = new Delivery();
+                                delivery.setId(rs.getInt("id_delivery"));
+                                delivery.setFullName(rs.getString("fullName"));
+                                delivery.setPhoneNumber(rs.getString("phoneNumber"));
+                                signature.setDelivery(delivery);
+
+                                return signature;
+                            } catch (SQLException e) {
+                                System.err.println("Error OrderSignurateDao getSignALl:" + e.getMessage());
+                                e.printStackTrace();
+                                throw new RuntimeException("Failed to map OrderSignatures data", e);
+                            }
+                        }).list()
+        );
+    }
+
     public static void main(String[] args) {
         OrderSignatureDAO dao = new OrderSignatureDAO();
         System.out.println(dao.getPublicKeyById(10));
@@ -219,7 +284,6 @@ public class OrderSignatureDAO {
 //            e.printStackTrace();
 //        }
 //    }
-
 
 
 //    public static void main(String[] args) {

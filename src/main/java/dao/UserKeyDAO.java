@@ -43,6 +43,27 @@ public class UserKeyDAO {
                         .execute() > 0);
     }
 
+    public UserKeys getUserKeysById(int keyId) {
+        String sql = "SELECT * FROM user_keys WHERE id = :idUser";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("idUser", keyId)
+                        .map((rs, ctx) -> {
+                            UserKeys userKey = new UserKeys();
+                            userKey.setId(rs.getInt("id"));
+
+                            User user = new User();
+                            user.setId(rs.getInt("user_id"));
+                            userKey.setUser(user);
+
+                            userKey.setPublicKey(rs.getString("public_key"));
+                            userKey.setCreate_at(rs.getObject("created_at", LocalDateTime.class));
+                            return userKey;
+                        })
+                        .findFirst()
+                        .orElse(null));
+    }
+
 //    public List<Order> getOrdersByUserId(int userId) {
 //        String query = "SELECT * FROM orders WHERE idUser = :idUser ORDER BY timeOrder DESC";
 //
