@@ -9,17 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fbae580-0f5e-4480-ac09-92700fd4c118" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="1fbae580-0f5e-4480-ac09-92700fd4c118" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
