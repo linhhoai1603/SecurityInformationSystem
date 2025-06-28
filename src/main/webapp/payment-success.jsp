@@ -31,6 +31,11 @@
             <h3 class="text-center mt-5 text-success">Thanh toán thành công</h3>
         </div>
         <div class="col-md-7 mt-5">
+            <h4 style="color: #4fd0b6">Chữ ký xác nhận</h4>
+            <div class="row">
+                <p class="col-md-12 text-center" style="word-break: break-all;white-space: normal;">${requestScope.digitalSignature}</p>
+                <hr />
+            </div>
             <h4 style="color: #4fd0b6">Chi tiết đơn hàng</h4>
             <div class="row">
                 <p class="col-md-4 text-center fw-bold">Sản phẩm</p>
