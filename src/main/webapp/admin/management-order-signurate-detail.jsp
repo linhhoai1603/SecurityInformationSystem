@@ -299,50 +299,65 @@
                     if (!response.ok) {
                         try {
                             const json = JSON.parse(text);
-                            throw new Error(json.error || `HTTP error! Status: ${response.status}`);
+                            throw new Error(json.error || 'HTTP error! Status:' + response.status);
                         } catch (e) {
-                            throw new Error(`HTTP error! Status: ${response.status}, Response: ${text}`);
+                            throw new Error('HTTP error! Status: ' + response.status + ', Response: ' + text);
                         }
                     }
                     return JSON.parse(text);
                 });
             }).then(data => {
                 console.log('Response data:', data);
+                let formattedJson = 'N/A';
+                if (data.orderDataJson) {
+                    try {
+                        formattedJson = JSON.stringify(JSON.parse(data.orderDataJson), null, 2);
+                    } catch (e) {
+                        formattedJson = escapeHtml(data.orderDataJson);
+                    }
+                }
                 if (data.error) {
-                    resultContainer.innerHTML = `
-                        <div class="alert alert-danger mt-3">${data.error}</div>
-                    `;
+                    resultContainer.innerHTML = '<div class="alert alert-danger mt-3">Lỗi: ' + data.error + '</div>';
                 } else if (!data.verificationResult) {
-                    resultContainer.innerHTML = `
-                        <div class="alert alert-danger mt-3">Lỗi: Không nhận được kết quả xác minh từ server</div>
-                    `;
+                    resultContainer.innerHTML = '<div class="alert alert-danger mt-3">Lỗi: Không nhận được kết quả xác minh từ server</div>';
                 } else {
-                    resultContainer.innerHTML = `
-                        <div class="alert alert-success mt-3">
-                            <h6>${data.verificationResult}</h6>
-                            <details class="mt-2">
-                                <summary>Xem chi tiết dữ liệu</summary>
-                                <div class="mt-2">
-                                    <p><strong>Order Data Hash:</strong></p>
-                                    <code class="code-box">${data.orderDataHash || 'N/A'}</code>
-                                    <p class="mt-2"><strong>Order Data JSON:</strong></p>
-                                    <pre class="bg-light p-2 border rounded" style="max-height: 300px; overflow-y: auto;">
-                                        ${data.orderDataJson || 'N/A'}
-                                    </pre>
-                                </div>
-                            </details>
-                        </div>
-                    `;
-                    setTimeout(() => window.location.reload(), 2000); // Tải lại sau 2 giây để người dùng thấy kết quả
+                    resultContainer.innerHTML =
+                        // '<div class="alert alert-success mt-3"><h6>' + data.verificationResult + '</h6>' +
+                        // '<details class="mt-2">' +
+                        // '<summary>Xem chi tiết dữ liệu</summary>' +
+                        // '<div class="mt-2">' +
+                        // '<p><strong>Order Data Hash:</strong></p>' +
+                        // '<code class="code-box">' + data.orderDataHash || 'N/A' + '</code>' +
+                        // '<p class="mt-2"><strong>Order Data JSON:</strong></p>' +
+                        // '<pre class="bg-light p-2 border rounded" style="max-height: 300px; overflow-y: auto;">' + data.orderDataJson || 'N/A' + '</pre>' +
+                        // '</div></details></div>'
+                        resultContainer.innerHTML = '<div class="alert alert-' + (data.verificationResult.includes('thành công') ? 'success' : 'danger') + ' mt-3"><h6>' + data.verificationResult + '</h6>' +
+                            '<details class="mt-2" open>' +
+                            '<summary>Xem chi tiết dữ liệu</summary>' +
+                            '<div class="mt-2">' +
+                            '<p><strong>Order Data Hash:</strong></p>' +
+                            '<code class="code-box">' + escapeHtml(data.orderDataHash) + '</code>' +
+                            '<p class="mt-2"><strong>Order Data JSON:</strong></p>' +
+                            '<pre class="bg-light p-2 border rounded" style="max-height: 300px; overflow-y: auto;">' +
+                            formattedJson +
+                            '</pre></div></details></div>';
                 }
             }).catch(error => {
                 console.error('Ajax error:', error.message);
-                resultContainer.innerHTML = `
-                    <div class="alert alert-danger mt-3">Lỗi: ${error.message}</div>
-                `;
+                resultContainer.innerHTML =
+                    '<div class="alert alert-danger mt-3">Lỗi:' + error.message + '</div>';
             });
         });
     });
+    function escapeHtml(unsafe) {
+        if (unsafe === null || unsafe === undefined) return 'N/A';
+        return String(unsafe)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 </script>
 </body>
 </html>

@@ -290,7 +290,7 @@ public class OrderSignatureDAO {
     }
 
     public boolean updateSignatureStatus(int signatureId, String status) {
-        String sql = "UPDATE order_signatures SET status=:status WHERE id=:id";
+        String sql = "UPDATE order_signatures SET verified=:status WHERE id=:id";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("status", status)
