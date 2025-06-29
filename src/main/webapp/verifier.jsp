@@ -12,6 +12,15 @@
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navbar.jsp"%>
 <div class="container mt-5">
+    <div class="col-md-12">
+        <h3 class="text-center mt-5 text-success">Ký xác nhận</h3>
+    </div>
+
+    <div class="row mt-5">
+        <p >Bạn chưa có khóa?
+            <a href="enter-public-key.jsp" id="CreateKey" class="text-primary">&nbsp;Ấn vào đây để tạo khóa</a>
+        </p>
+    </div>
 <%--    <h2>Thông tin đơn hàng (JSON)</h2>--%>
     <pre id="jsonContent" style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; display: none"></pre>
     <br>
@@ -126,6 +135,17 @@
             }, 1500);
         });
     }
+
+    // Hàm xử lý sự kiện tạo khóa
+    document.addEventListener("DOMContentLoaded", function() {
+        const createKeyLink = document.getElementById("CreateKey");
+        if (createKeyLink) {
+            createKeyLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                window.location.href = "enter-public-key.jsp";
+            });
+        }
+    });
 
 </script>
 </body>
