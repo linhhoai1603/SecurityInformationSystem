@@ -54,7 +54,7 @@
             <th>Số Lượng</th>
             <th>Giá Tiền</th>
             <th>Tổng Giá</th>
-            <th>Hành Động</th>
+<%--            <th>Hành Động</th>--%>
         </tr>
         </thead>
         <tbody>
@@ -67,47 +67,47 @@
                 <td>${detail.quantity}</td>
                 <td><fmt:formatNumber value="${detail.style.product.price.lastPrice}" type="number"/>₫</td>
                 <td><fmt:formatNumber value="${detail.totalPrice}" type="number"/>₫</td>
-                <td>
-                    <button class="btn btn-primary btn-sm edit-order-item"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editOrderItemModal"
-                            data-quantity="${detail.quantity}"
-                            data-detail-id="${detail.id}"
-                            data-order-id="${detail.idOrder}">Chỉnh sửa
-                    </button>
-                </td>
+<%--                <td>--%>
+<%--                    <button class="btn btn-primary btn-sm edit-order-item"--%>
+<%--                            data-bs-toggle="modal"--%>
+<%--                            data-bs-target="#editOrderItemModal"--%>
+<%--                            data-quantity="${detail.quantity}"--%>
+<%--                            data-detail-id="${detail.id}"--%>
+<%--                            data-order-id="${detail.idOrder}">Chỉnh sửa--%>
+<%--                    </button>--%>
+<%--                </td>--%>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <%--    Modal--%>
-    <div class="modal fade" id="editOrderItemModal" tabindex="-1" aria-labelledby="editOrderItemModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editOrderItemModalLabel">Chỉnh sửa sản phẩm</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="infoOrderItem"
-                          action="${pageContext.request.contextPath}/admin/manager-order-sign-detail?method=editOrderItem"
-                          method="POST">
-                        <input type="hidden" name="detailId" id="detailId">
-                        <input type="hidden" name="orderId" id="orderId">
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Số lượng</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<%--    <div class="modal fade" id="editOrderItemModal" tabindex="-1" aria-labelledby="editOrderItemModalLabel"--%>
+<%--         aria-hidden="true">--%>
+<%--        <div class="modal-dialog">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <h5 class="modal-title" id="editOrderItemModalLabel">Chỉnh sửa sản phẩm</h5>--%>
+<%--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                </div>--%>
+<%--                <div class="modal-body">--%>
+<%--                    <form id="infoOrderItem"--%>
+<%--                          action="${pageContext.request.contextPath}/admin/manager-order-sign-detail?method=editOrderItem"--%>
+<%--                          method="POST">--%>
+<%--                        <input type="hidden" name="detailId" id="detailId">--%>
+<%--                        <input type="hidden" name="orderId" id="orderId">--%>
+<%--                        <div class="mb-3">--%>
+<%--                            <label for="quantity" class="form-label">Số lượng</label>--%>
+<%--                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-footer">--%>
+<%--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>--%>
+<%--                            <button type="submit" class="btn btn-primary">Lưu</button>--%>
+<%--                        </div>--%>
+<%--                    </form>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
     <%--    Thông tin chữ ký    --%>
     <h4 class="mb-3">Thông Tin Chữ Ký</h4>
     <div class="row mb-4">
@@ -213,19 +213,19 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Listen for the modal show event triggered by Bootstrap
-        document.querySelectorAll('.edit-order-item').forEach(button => {
-            button.addEventListener('click', function () {
-                // Get data attributes from the clicked button
-                const quantity = this.getAttribute('data-quantity');
-                const detailId = this.getAttribute('data-detail-id');
-                const orderId = this.getAttribute('data-order-id');
-
-                // Populate the modal form fields
-                document.getElementById('quantity').value = quantity;
-                document.getElementById('detailId').value = detailId;
-                document.getElementById('orderId').value = orderId;
-            });
-        });
+        // document.querySelectorAll('.edit-order-item').forEach(button => {
+        //     button.addEventListener('click', function () {
+        //         // Get data attributes from the clicked button
+        //         const quantity = this.getAttribute('data-quantity');
+        //         const detailId = this.getAttribute('data-detail-id');
+        //         const orderId = this.getAttribute('data-order-id');
+        //
+        //         // Populate the modal form fields
+        //         document.getElementById('quantity').value = quantity;
+        //         document.getElementById('detailId').value = detailId;
+        //         document.getElementById('orderId').value = orderId;
+        //     });
+        // });
 
         const verifyForm = document.getElementById('verifySignatureForm');
         const resultContainer = document.getElementById('verificationResultContainer');
