@@ -9,6 +9,7 @@ import org.jdbi.v3.core.Jdbi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 
 public class OrderDAO {
@@ -130,6 +131,15 @@ public class OrderDAO {
 
                     return order;
                 }).list());
+    }
+
+    public boolean updateOrder(Order order) {
+        String sql = "UPDATE orders SET lastPrice = :lastPrice WHERE id = :id";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("lastPrice", order.getLastPrice())
+                        .bind("id", order.getId())
+                        .execute() > 0);
     }
 
 }

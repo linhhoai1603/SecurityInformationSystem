@@ -50,6 +50,7 @@
                        aria-label="Search" required>
                 <button class="btn btn-primary" type="submit">Tìm kiếm</button>
             </form>
+            <a class="btn btn-warning" href="order-signurate">Xem tất cả sản phẩm</a>
         </div>
     </div>
 
@@ -81,11 +82,11 @@
                     </div>
                 </td>
                 <td>${sign.verified}</td>
-                <td><form id="detailForm" action="order-signurate" method="POST" style="display: inline;">
-                    <input type="hidden" name="method" value="detailOrderSign">
-                    <input type="hidden" name="id" value="${sign.order.id}">
-                    <button type="submit" class="btn btn-warning">Xem chi tiết</button>
-                </form></td>
+                <td>
+                    <button class="btn btn-info">
+                        <a href="${pageContext.request.contextPath}/admin/manager-order-sign-detail?orderId=${sign.order.id}">Xem chi tiết</a>
+                    </button>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
