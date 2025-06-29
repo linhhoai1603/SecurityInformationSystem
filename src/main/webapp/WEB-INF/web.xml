@@ -13,6 +13,15 @@
         </multipart-config>
     </servlet>
 
+    <servlet>
+        <servlet-name>order-signdetail</servlet-name>
+        <servlet-class>controllers.AdminManagerOrderSignatureDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order-signdetail</servlet-name>
+        <url-pattern>/admin/order-signdetail</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>AvatarServlet</servlet-name>
         <url-pattern>/avatar</url-pattern>

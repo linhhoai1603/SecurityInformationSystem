@@ -155,7 +155,7 @@ public class OrderDetailDAO {
     }
 
     public boolean updateOrderDetail(OrderDetail orderDetail) {
-        String sql = "UPDATE order_details SET quantity = :quantity AND totalPrice = :totalPrice WHERE id = :id;";
+        String sql = "UPDATE order_details SET quantity = :quantity, totalPrice = :totalPrice WHERE id = :id;";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("quantity", orderDetail.getQuantity())

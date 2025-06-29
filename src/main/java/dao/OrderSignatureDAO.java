@@ -3,6 +3,9 @@ package dao;
 import connection.DBConnection;
 import models.*;
 import org.jdbi.v3.core.Jdbi;
+import services.DeliveryService;
+import services.OrderService;
+import services.UserKeyService;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -243,9 +246,56 @@ public class OrderSignatureDAO {
         );
     }
 
+    public OrderSignatures getSignaturesById(int id) {
+        String sql = "SELECT * from order_signatures where id = :id";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .map((rs, ctx) -> {
+                            try {
+                                OrderSignatures signature = new OrderSignatures();
+                                signature.setId(rs.getInt("id"));
+                                signature.setDigitalSignature(rs.getString("digital_signature"));
+                                signature.setVerified(rs.getString("verified"));
+                                signature.setCreate_at(rs.getObject("create_at", LocalDateTime.class));
+
+                                OrderService orderService = new OrderService();
+                                int orderId = rs.getInt("order_id");
+                                Order order = orderService.getOrder(orderId);
+                                signature.setOrder(order);
+
+                                UserKeyService userKeyService = new UserKeyService();
+                                int keyId = rs.getInt("key_id");
+                                UserKeys userKeys = userKeyService.getUserKeyById(keyId);
+                                signature.setUserKeys(userKeys);
+
+                                DeliveryService deliveryService = new DeliveryService();
+                                int deliveryId = rs.getInt("delivery_id");
+                                Delivery delivery = deliveryService.getDeliveryById(deliveryId);
+                                signature.setDelivery(delivery);
+
+                                return signature;
+                            } catch (SQLException e) {
+                                System.err.println("Error OrderSignurateDao getSignById:" + e.getMessage());
+                                e.printStackTrace();
+                                throw new RuntimeException("Failed to map OrderSignatures data", e);
+                            }
+                        }).findOne().orElse(null)
+        );
+    }
+
     public static void main(String[] args) {
         OrderSignatureDAO dao = new OrderSignatureDAO();
         System.out.println(dao.getPublicKeyById(10));
+    }
+
+    public boolean updateSignatureStatus(int signatureId, String status) {
+        String sql = "UPDATE order_signatures SET status=:status WHERE id=:id";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("status", status)
+                        .bind("id", signatureId)
+                        .execute() > 0);
     }
 
 //    public static void main(String[] args) {
