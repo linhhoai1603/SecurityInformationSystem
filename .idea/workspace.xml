@@ -10,17 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c35bb613-a845-4ea4-8a5e-b3e07cf03625" name="Changes" comment="modify register controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AdminManagerOrderSignurateDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderSignatureDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/OrderSignatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management-order-signurate-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/management_ordered_signureate.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -557,6 +549,7 @@
       <workItem from="1751162513781" duration="3418000" />
       <workItem from="1751175830203" duration="10638000" />
       <workItem from="1751194556389" duration="8771000" />
+      <workItem from="1751203683029" duration="3577000" />
     </task>
     <task id="LOCAL-00001" summary="modify register controller">
       <option name="closed" value="true" />
